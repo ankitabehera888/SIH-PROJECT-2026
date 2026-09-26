@@ -1,0 +1,7 @@
+Domain,Check_Type,Duplicate_Groups,Total_Excess_Records,Details,Severity
+Patients,National / ABHA Identifier Duplicate,0,0,0 duplicate ABHA/national ID values found,NONE
+Patients,Duplicate Phone Numbers,4,65,4 phone numbers shared across multiple patient records (e.g. family accounts),MEDIUM
+Patients,Duplicate Email Addresses,0,0,0 email addresses shared across multiple patient records,NONE
+Appointments,Double-Booked Appointment Slot,0,0,"0 double-booked appointment slots for same patient, provider and time",NONE
+Prescriptions,Duplicate Medication in Same Prescription,0,0,0 prescriptions containing duplicate lines for the same drug,NONE
+Diagnostics,Duplicate Test in Same Diagnostic Order,0,0,0 orders containing duplicate test line items,NONE

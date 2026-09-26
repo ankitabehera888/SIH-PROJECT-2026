@@ -1,0 +1,5 @@
+Metric,Unit,Total_Evaluated,Median,Mean,Std_Dev,IQR,IQR_Lower_Bound,IQR_Upper_Bound,Outliers_IQR_Count,Outliers_ZScore_Count,Max_Observed,Outlier_Status
+OPD Waiting Duration,Minutes,17,0.0,0.0,0.0,0.0,0.0,0.0,17,0,0.0,REVIEW_NEEDED
+Teleconsultation Duration,Minutes,0,0.0,0.0,0.0,0.0,0.0,0.0,0,0,0.0,INSUFFICIENT_DATA
+Appointment Booking Lead Time,Days,637,0.0,1.02,1.68,2.0,-3.0,5.0,28,14,9.0,REVIEW_NEEDED
+Prescription Items Density,Items,110,1.0,1.0,0.0,0.0,1.0,1.0,0,0,1.0,NORMAL

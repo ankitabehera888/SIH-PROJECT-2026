@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  data-pipeline-worker:
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile
+    container_name: healthcare_data_worker
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.50'
+          memory: 2G
+        reservations:
+          cpus: '0.50'
+          memory: 512M
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://etl_user:healthcare_dev_password@healthcare_postgres:5432/healthcare_dev
+      - REDIS_URL=redis://healthcare_redis:6379/1
+    volumes:
+      - pipeline_metadata:/app/metadata
+      - pipeline_reports:/app/reports
+    networks:
+      - healthcare_prod_network
+
+volumes:
+  pipeline_metadata:
+  pipeline_reports:
+
+networks:
+  healthcare_prod_network:
+    external: true
+    name: healthcare_default

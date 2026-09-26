@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedAssist AI — Symptom Analyst</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+
+        /* Header */
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); border-bottom: 1px solid #1e40af33; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+        .header .logo { width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .header h1 { font-size: 18px; font-weight: 600; color: #f1f5f9; }
+        .header .badge { background: #10b98133; color: #34d399; font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 500; }
+
+        /* Layout */
+        .layout { display: grid; grid-template-columns: 320px 1fr; height: calc(100vh - 69px); }
+
+        /* Sidebar */
+        .sidebar { background: #1e293b; border-right: 1px solid #334155; display: flex; flex-direction: column; }
+        .sidebar-header { padding: 16px; border-bottom: 1px solid #334155; }
+        .sidebar-header h2 { font-size: 14px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .new-session-btn { width: 100%; padding: 10px 16px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .new-session-btn:hover { background: linear-gradient(135deg, #60a5fa, #3b82f6); transform: translateY(-1px); }
+
+        .session-form { padding: 16px; border-bottom: 1px solid #334155; }
+        .session-form label { display: block; font-size: 13px; color: #94a3b8; margin-bottom: 6px; font-weight: 500; }
+        .session-form textarea { width: 100%; height: 80px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px; color: #e2e8f0; font-size: 14px; resize: vertical; font-family: inherit; }
+        .session-form textarea:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px #3b82f620; }
+        .session-form button { margin-top: 10px; }
+
+        .session-list { flex: 1; overflow-y: auto; padding: 8px; }
+        .session-item { padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 4px; }
+        .session-item:hover { background: #334155; }
+        .session-item.active { background: #1e40af33; border-left: 3px solid #3b82f6; }
+        .session-item .complaint { font-size: 13px; font-weight: 500; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .session-item .meta { font-size: 11px; color: #64748b; margin-top: 4px; display: flex; gap: 8px; align-items: center; }
+        .session-item .triage-badge { padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+        .triage-non_urgent { background: #10b98133; color: #34d399; }
+        .triage-semi_urgent { background: #f59e0b33; color: #fbbf24; }
+        .triage-urgent { background: #f9731633; color: #fb923c; }
+        .triage-emergency { background: #ef444433; color: #f87171; }
+
+        /* Chat Area */
+        .chat-area { display: flex; flex-direction: column; background: #0f172a; }
+        .chat-header { padding: 14px 20px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 12px; }
+        .chat-header .status { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+        .chat-header .status.inactive { background: #64748b; }
+        .chat-header span { font-size: 14px; color: #94a3b8; }
+
+        .chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+        .message { max-width: 75%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; animation: fadeIn 0.3s ease; }
+        .message.user { align-self: flex-end; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border-bottom-right-radius: 4px; }
+        .message.assistant { align-self: flex-start; background: #1e293b; color: #e2e8f0; border-bottom-left-radius: 4px; border: 1px solid #334155; }
+        .message .role-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; opacity: 0.7; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Analysis Card */
+        .analysis-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px; margin: 0 20px 16px; }
+        .analysis-card h3 { font-size: 14px; font-weight: 600; color: #3b82f6; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .diagnosis-list { list-style: none; }
+        .diagnosis-item { padding: 10px 12px; background: #0f172a; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #3b82f6; }
+        .diagnosis-item .condition { font-size: 14px; font-weight: 600; color: #f1f5f9; }
+        .diagnosis-item .details { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+        .diagnosis-item .confidence { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: #3b82f633; color: #60a5fa; }
+        .diagnosis-item .likelihood-high { background: #10b98133; color: #34d399; }
+        .diagnosis-item .likelihood-medium { background: #f59e0b33; color: #fbbf24; }
+        .diagnosis-item .likelihood-low { background: #64748b33; color: #94a3b8; }
+
+        .urgency-meter { margin-top: 12px; }
+        .urgency-meter label { font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; }
+        .urgency-bar { height: 8px; background: #0f172a; border-radius: 4px; overflow: hidden; }
+        .urgency-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+
+        .action-box { margin-top: 12px; padding: 10px 12px; background: #10b98110; border: 1px solid #10b98133; border-radius: 8px; }
+        .action-box .label { font-size: 11px; font-weight: 600; text-transform: uppercase; color: #34d399; margin-bottom: 4px; }
+        .action-box .text { font-size: 13px; color: #e2e8f0; }
+
+        /* Input Area */
+        .chat-input { padding: 16px 20px; border-top: 1px solid #1e293b; display: flex; gap: 10px; }
+        .chat-input input { flex: 1; padding: 12px 16px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #e2e8f0; font-size: 14px; font-family: inherit; }
+        .chat-input input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px #3b82f620; }
+        .chat-input input::placeholder { color: #475569; }
+        .send-btn { padding: 12px 20px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .send-btn:hover { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+        .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Empty State */
+        .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #475569; }
+        .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+        .empty-state h3 { font-size: 18px; color: #64748b; margin-bottom: 8px; }
+        .empty-state p { font-size: 14px; max-width: 400px; text-align: center; line-height: 1.6; }
+
+        /* Typing indicator */
+        .typing { display: flex; gap: 4px; padding: 8px 0; }
+        .typing span { width: 6px; height: 6px; background: #64748b; border-radius: 50%; animation: bounce 1.4s infinite; }
+        .typing span:nth-child(2) { animation-delay: 0.2s; }
+        .typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">🩺</div>
+        <h1>MedAssist AI</h1>
+        <span class="badge">Symptom Analyst Agent</span>
+    </div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>New Session</h2>
+                <textarea id="chiefComplaint" placeholder="Describe your symptoms... (e.g., I've had a persistent headache for 3 days on the right side, worsened by screens, with nausea)"></textarea>
+                <button class="new-session-btn" onclick="startSession()">🔍 Start Symptom Check</button>
+            </div>
+            <div class="session-list" id="sessionList"></div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <div class="chat-header" id="chatHeader" style="display:none;">
+                <div class="status" id="statusDot"></div>
+                <span id="chatTitle">Symptom Analysis Session</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="empty-state" id="emptyState">
+                    <div class="icon">🩺</div>
+                    <h3>Symptom Analyst Agent</h3>
+                    <p>Describe your symptoms in the sidebar to start a multi-turn AI-assisted symptom analysis. The agent will ask follow-up questions using the OLDCARTS framework and provide a differential diagnosis.</p>
+                </div>
+            </div>
+            <div class="chat-input" id="chatInput" style="display:none;">
+                <input type="text" id="messageInput" placeholder="Type your response..." onkeydown="if(event.key==='Enter')sendMessage()">
+                <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send ➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : 'http://localhost:8000';
+        let sessions = [];
+        let activeSessionId = null;
+
+        async function startSession() {
+            const complaint = document.getElementById('chiefComplaint').value.trim();
+            if (!complaint) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/symptoms/session`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chief_complaint: complaint })
+                });
+                const session = await res.json();
+                sessions.unshift({ ...session, messages: [{ role: 'user', content: complaint }] });
+                activeSessionId = session.id;
+                document.getElementById('chiefComplaint').value = '';
+                renderSessionList();
+                showChat();
+                addMessage('user', complaint);
+
+                // Auto-send the initial complaint as the first message to the AI
+                await sendMessageInternal(complaint);
+            } catch (err) {
+                console.error('Failed to start session:', err);
+                // Fallback: simulate the session locally
+                simulateStartSession(complaint);
+            }
+        }
+
+        function simulateStartSession(complaint) {
+            const session = {
+                id: 'demo-' + Date.now(),
+                patient_id: 'demo-patient-001',
+                status: 'in_progress',
+                chief_complaint: complaint,
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+                messages: [{ role: 'user', content: complaint }]
+            };
+            sessions.unshift(session);
+            activeSessionId = session.id;
+            document.getElementById('chiefComplaint').value = '';
+            renderSessionList();
+            showChat();
+            addMessage('user', complaint);
+
+            // Simulate AI response
+            setTimeout(() => {
+                const aiResponse = generateAIResponse(complaint);
+                addMessage('assistant', aiResponse.text);
+                if (aiResponse.analysis) {
+                    showAnalysisCard(aiResponse.analysis);
+                }
+                const s = sessions.find(s => s.id === activeSessionId);
+                if (s) {
+                    s.messages.push({ role: 'assistant', content: aiResponse.text });
+                    if (aiResponse.analysis) s.analysis = aiResponse.analysis;
+                }
+            }, 1200);
+        }
+
+        function generateAIResponse(input) {
+            const lower = input.toLowerCase();
+            if (lower.includes('chest pain') || lower.includes('numb') || lower.includes('sweating')) {
+                return {
+                    text: '⚠️ **EMERGENCY DETECTED**\n\nBased on your symptoms — severe chest pain, left arm numbness, sweating, and dizziness — this could indicate a cardiac event.\n\n**IMMEDIATE ACTION:** Call 911 right now. While waiting:\n• Sit or lie down in a comfortable position\n• Chew an aspirin (325mg) if not allergic\n• Loosen tight clothing\n• Do NOT drive yourself to the hospital',
+                    analysis: {
+                        urgency_score: 10,
+                        diagnoses: [{ condition: 'Acute Myocardial Infarction (Heart Attack)', likelihood: 'high', confidence: 0.85, icd10: 'I21.9' }],
+                        recommended_action: 'Call emergency services (911) immediately',
+                        specialist: null
+                    }
+                };
+            }
+            if (lower.includes('headache') || lower.includes('head')) {
+                return {
+                    text: "I'm sorry you're dealing with this headache. Let me ask a few follow-up questions to better understand your situation:\n\n1. How would you describe the pain — is it throbbing, pressing, or sharp?\n2. On a scale of 1-10, how severe is the pain?\n3. Have you noticed any sensitivity to light or sound?\n4. Have you had similar headaches before?\n5. Are you taking any medications currently?\n\nThese details will help me provide a more accurate assessment.",
+                    analysis: null
+                };
+            }
+            if (lower.includes('throbbing') || lower.includes('7/10') || lower.includes('photophobia') || lower.includes('light')) {
+                return {
+                    text: "Based on your symptoms, here are the most likely possibilities:\n\n1. **Migraine without aura** (likelihood: high)\n2. **Tension-type headache** (likelihood: medium)\n3. **Medication-related headache** (likelihood: low)\n\n**Recommended next step:** Schedule an appointment with your doctor within the next few days. Rest in a dark, quiet room and stay hydrated. Seek immediate care if the headache suddenly worsens or you develop vision changes, weakness, or difficulty speaking.\n\n**Specialist referral:** Neurology",
+                    analysis: {
+                        urgency_score: 4,
+                        diagnoses: [
+                            { condition: 'Migraine without aura', likelihood: 'high', confidence: 0.78, icd10: 'G43.0', factors: ['unilateral throbbing pain', 'photophobia', 'nausea', 'recurrent episodes'] },
+                            { condition: 'Tension-type headache', likelihood: 'medium', confidence: 0.45, icd10: 'G44.2', factors: ['prolonged duration', 'screen-related aggravation'] },
+                            { condition: 'Medication-related headache', likelihood: 'low', confidence: 0.2, icd10: 'G44.4', factors: ['on antihypertensive medication'] }
+                        ],
+                        recommended_action: 'Schedule an appointment with your doctor within the next few days. Rest in a dark, quiet room.',
+                        specialist: 'Neurology'
+                    }
+                };
+            }
+            return {
+                text: "Thank you for that information. Could you tell me more about:\n\n1. When did these symptoms first start?\n2. How long have they been present?\n3. Are there any activities or positions that make them better or worse?\n4. Have you experienced anything like this before?",
+                analysis: null
+            };
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const msg = input.value.trim();
+            if (!msg || !activeSessionId) return;
+
+            input.value = '';
+            addMessage('user', msg);
+
+            const s = sessions.find(s => s.id === activeSessionId);
+            if (s) s.messages.push({ role: 'user', content: msg });
+
+            // Try API first
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/symptoms/session/${activeSessionId}/message`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await res.json();
+                if (data.response || data.ai_analysis) {
+                    const text = data.response || 'Analyzing your symptoms...';
+                    addMessage('assistant', text);
+                    if (data.ai_analysis) showAnalysisCard(data.ai_analysis);
+                    if (s) s.messages.push({ role: 'assistant', content: text });
+                    return;
+                }
+            } catch (err) {}
+
+            // Fallback: simulate
+            await sendMessageInternal(msg);
+        }
+
+        async function sendMessageInternal(msg) {
+            showTyping();
+            await new Promise(r => setTimeout(r, 1000 + Math.random() * 1500));
+            hideTyping();
+
+            const response = generateAIResponse(msg);
+            addMessage('assistant', response.text);
+            if (response.analysis) showAnalysisCard(response.analysis);
+            const s = sessions.find(s => s.id === activeSessionId);
+            if (s) {
+                s.messages.push({ role: 'assistant', content: response.text });
+                if (response.analysis) s.analysis = response.analysis;
+            }
+        }
+
+        function addMessage(role, content) {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = `message ${role}`;
+            const label = role === 'user' ? 'You' : '🤖 AI Agent';
+            div.innerHTML = `<div class="role-label">${label}</div>${content.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}`;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showAnalysisCard(analysis) {
+            const container = document.getElementById('chatMessages');
+            const card = document.createElement('div');
+            card.className = 'analysis-card';
+
+            const score = analysis.urgency_score || analysis.urgencyScore || 5;
+            const color = score >= 8 ? '#ef4444' : score >= 5 ? '#f59e0b' : '#10b981';
+            const diagnoses = analysis.diagnoses || analysis.differential_diagnoses || analysis.differential_diagnosis || [];
+
+            let diagHtml = diagnoses.map(d => `
+                <li class="diagnosis-item">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span class="condition">${d.condition}</span>
+                        <span class="confidence likelihood-${d.likelihood}">${d.confidence ? Math.round(d.confidence*100)+'%' : d.likelihood}</span>
+                    </div>
+                    <div class="details">${d.icd10 || d.icd10_code ? 'ICD-10: '+(d.icd10||d.icd10_code) : ''} ${d.factors ? '• '+d.factors.join(', ') : ''}</div>
+                </li>
+            `).join('');
+
+            card.innerHTML = `
+                <h3>📊 AI Analysis</h3>
+                ${diagnoses.length ? `<ul class="diagnosis-list">${diagHtml}</ul>` : ''}
+                <div class="urgency-meter">
+                    <label>Urgency Score: <strong style="color:${color}">${score}/10</strong></label>
+                    <div class="urgency-bar"><div class="urgency-fill" style="width:${score*10}%;background:${color}"></div></div>
+                </div>
+                ${analysis.recommended_action ? `
+                <div class="action-box">
+                    <div class="label">Recommended Action</div>
+                    <div class="text">${analysis.recommended_action}</div>
+                </div>` : ''}
+                ${analysis.specialist ? `<div style="margin-top:10px;font-size:13px;color:#94a3b8;">👨‍⚕️ Specialist: <strong style="color:#60a5fa">${analysis.specialist}</strong></div>` : ''}
+            `;
+
+            container.appendChild(card);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTyping() {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = 'message assistant';
+            div.id = 'typingIndicator';
+            div.innerHTML = '<div class="role-label">🤖 AI Agent</div><div class="typing"><span></span><span></span><span></span></div>';
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTyping() {
+            const el = document.getElementById('typingIndicator');
+            if (el) el.remove();
+        }
+
+        function showChat() {
+            document.getElementById('emptyState').style.display = 'none';
+            document.getElementById('chatHeader').style.display = 'flex';
+            document.getElementById('chatInput').style.display = 'flex';
+        }
+
+        function renderSessionList() {
+            const list = document.getElementById('sessionList');
+            list.innerHTML = sessions.map(s => {
+                const triage = s.triage_level || (s.analysis ? getTriage(s.analysis.urgency_score) : null);
+                return `
+                    <div class="session-item ${s.id === activeSessionId ? 'active' : ''}" onclick="selectSession('${s.id}')">
+                        <div class="complaint">${s.chief_complaint}</div>
+                        <div class="meta">
+                            <span>${new Date(s.created_at).toLocaleTimeString()}</span>
+                            ${triage ? `<span class="triage-badge triage-${triage}">${triage}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getTriage(score) {
+            if (score >= 8) return 'emergency';
+            if (score >= 6) return 'urgent';
+            if (score >= 4) return 'semi_urgent';
+            return 'non_urgent';
+        }
+
+        function selectSession(id) {
+            activeSessionId = id;
+            const session = sessions.find(s => s.id === id);
+            renderSessionList();
+
+            const container = document.getElementById('chatMessages');
+            container.innerHTML = '';
+            showChat();
+
+            if (session && session.messages) {
+                session.messages.forEach(m => addMessage(m.role, m.content));
+                if (session.analysis) showAnalysisCard(session.analysis);
+            }
+        }
+    </script>
+</body>
+</html>

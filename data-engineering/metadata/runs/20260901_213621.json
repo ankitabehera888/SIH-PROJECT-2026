@@ -1,0 +1,14 @@
+{
+  "run_id": "20260901_213621",
+  "pipeline": "healthcare_etl",
+  "source": "healthcare_dev",
+  "status": "success",
+  "started_at": "2026-09-01T21:36:21.631519+00:00",
+  "finished_at": "2026-09-01T21:36:21.631539+00:00",
+  "steps": {
+    "extract": "success"
+  },
+  "metrics": {},
+  "errors": [],
+  "warnings": []
+}

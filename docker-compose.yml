@@ -1,0 +1,4 @@
+name: healthcare
+
+include:
+  - backend/docker-compose.yml

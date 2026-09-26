@@ -1,0 +1,7 @@
+{
+  "pipeline": "healthcare_etl",
+  "last_run_id": "20260901_232154",
+  "last_status": "success",
+  "last_successful_run": "2026-09-01T23:22:07.303005+00:00",
+  "updated_at": "2026-09-01T23:22:07.305978+00:00"
+}

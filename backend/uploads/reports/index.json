@@ -1,0 +1,160 @@
+[
+  {
+    "id": "20328a2f-75a3-4937-ab15-1270a505aa9a",
+    "name": "Te-aug-me_31.jpg",
+    "type": "image/jpeg",
+    "uploadDate": "2026-09-26",
+    "size": "21 KB",
+    "status": "processed",
+    "category": "Imaging",
+    "summary": "The MRI scan shows an abnormal area in the brain that may require further evaluation.",
+    "results": [
+      {
+        "test": "MRI Brain",
+        "value": "Abnormal mass detected",
+        "range": "N/A",
+        "status": "unknown"
+      }
+    ],
+    "aiConnected": true,
+    "error": null,
+    "metadata": {
+      "stored_name": "20328a2f-75a3-4937-ab15-1270a505aa9a.jpg"
+    }
+  },
+  {
+    "id": "466f8d68-f1e4-4478-ad16-e30e623361e7",
+    "name": "Blood-sugar.pdf",
+    "type": "application/pdf",
+    "uploadDate": "2026-09-26",
+    "size": "187 KB",
+    "status": "processed",
+    "category": "Blood Test",
+    "summary": "The lab report shows elevated fasting and post-meal glucose levels, indicating potential issues with blood sugar regulation. The fasting glucose level is 120 mg/dL, which is above the normal range, and the post-meal glucose level is 150 mg/dL, also above the normal range. These results suggest the possibility of impaired glucose tolerance or early signs of diabetes.",
+    "results": [
+      {
+        "test": "Glucose, Fasting",
+        "value": "120.0",
+        "range": "70 - 100 mg/dL",
+        "status": "high"
+      },
+      {
+        "test": "Glucose (Post Meal)",
+        "value": "150.0",
+        "range": "70 - 140 mg/dL",
+        "status": "high"
+      }
+    ],
+    "aiConnected": true,
+    "error": null,
+    "metadata": {
+      "stored_name": "466f8d68-f1e4-4478-ad16-e30e623361e7.pdf"
+    }
+  },
+  {
+    "id": "7abb13b2-9af6-40d0-9113-821373406bff",
+    "name": "Cardiac_report.pdf",
+    "type": "application/pdf",
+    "uploadDate": "2026-09-26",
+    "size": "403 KB",
+    "status": "processed",
+    "category": "Blood Test",
+    "summary": "The lab report indicates several tests related to cardiac health. Some values are outside the normal range, which may require further attention.",
+    "results": [
+      {
+        "test": "hsCRP (High-sensitivity C-reactive protein)",
+        "value": ">10",
+        "range": "<1.0",
+        "status": "high"
+      },
+      {
+        "test": "Cardiac Troponin I",
+        "value": "<1.0",
+        "range": "<1.0",
+        "status": "normal"
+      },
+      {
+        "test": "LDL Cholesterol",
+        "value": ">130",
+        "range": "<100",
+        "status": "high"
+      },
+      {
+        "test": "Total Cholesterol",
+        "value": "<200",
+        "range": "<200",
+        "status": "normal"
+      },
+      {
+        "test": "Triglycerides",
+        "value": "<150",
+        "range": "<150",
+        "status": "normal"
+      },
+      {
+        "test": "HDL Cholesterol",
+        "value": ">40",
+        "range": ">40",
+        "status": "normal"
+      },
+      {
+        "test": "HbA1c",
+        "value": "4.0-5.6",
+        "range": "4.0-5.6",
+        "status": "normal"
+      }
+    ],
+    "aiConnected": true,
+    "error": null,
+    "metadata": {
+      "stored_name": "7abb13b2-9af6-40d0-9113-821373406bff.pdf"
+    }
+  },
+  {
+    "id": "ba2fb75d-ed75-4ec6-9f11-b937989bb9e9",
+    "name": "Covid-Test.pdf",
+    "type": "application/pdf",
+    "uploadDate": "2026-09-26",
+    "size": "597 KB",
+    "status": "processed",
+    "category": "Blood Test",
+    "summary": "The lab report includes various test results related to the patient's health status. Some values are within normal ranges, while others may require further attention.",
+    "results": [
+      {
+        "test": "COVID-19 PCR Test",
+        "value": "Negative",
+        "range": "Negative",
+        "status": "normal"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "value": "12.5",
+        "range": "4.0 - 11.0",
+        "status": "high"
+      },
+      {
+        "test": "Liver Function Test (ALT)",
+        "value": "45",
+        "range": "7 - 56",
+        "status": "normal"
+      },
+      {
+        "test": "Liver Function Test (AST)",
+        "value": "30",
+        "range": "10 - 40",
+        "status": "normal"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "value": "10",
+        "range": "0 - 5",
+        "status": "high"
+      }
+    ],
+    "aiConnected": true,
+    "error": null,
+    "metadata": {
+      "stored_name": "ba2fb75d-ed75-4ec6-9f11-b937989bb9e9.pdf"
+    }
+  }
+]

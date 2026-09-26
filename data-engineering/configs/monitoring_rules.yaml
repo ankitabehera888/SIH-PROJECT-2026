@@ -1,0 +1,151 @@
+# Healthcare Data Platform — Automated Quality Monitoring Rules
+version: "1.0.0"
+
+rules:
+  # 1. Completeness Checks
+  - code: patient_id_completeness
+    name: "Patient Dimension Key Completeness"
+    type: "COMPLETENESS"
+    table: "analytics.dim_patient"
+    severity: "CRITICAL"
+    max_null_rate: 0.0
+
+  - code: encounter_key_completeness
+    name: "Encounter Fact Key Completeness"
+    type: "COMPLETENESS"
+    table: "analytics.fact_encounter"
+    severity: "CRITICAL"
+    max_null_rate: 0.0
+
+  - code: appointment_key_completeness
+    name: "Appointment Fact Key Completeness"
+    type: "COMPLETENESS"
+    table: "analytics.fact_appointment"
+    severity: "CRITICAL"
+    max_null_rate: 0.0
+
+  - code: referral_key_completeness
+    name: "Referral Fact Key Completeness"
+    type: "COMPLETENESS"
+    table: "analytics.fact_referral"
+    severity: "CRITICAL"
+    max_null_rate: 0.0
+
+  # 2. Referential Integrity Checks
+  - code: orphan_vitals_check
+    name: "Orphan Vital Signs Detection"
+    type: "INTEGRITY"
+    table: "analytics.fact_vital"
+    severity: "CRITICAL"
+    max_orphans: 0
+
+  - code: orphan_prescriptions_check
+    name: "Orphan Prescriptions Detection"
+    type: "INTEGRITY"
+    table: "analytics.fact_prescription"
+    severity: "CRITICAL"
+    max_orphans: 0
+
+  - code: orphan_encounters_patient_check
+    name: "Orphan Encounters Missing Patient"
+    type: "INTEGRITY"
+    table: "analytics.fact_encounter"
+    severity: "CRITICAL"
+    max_orphans: 0
+
+  - code: orphan_appointments_patient_check
+    name: "Orphan Appointments Missing Patient"
+    type: "INTEGRITY"
+    table: "analytics.fact_appointment"
+    severity: "CRITICAL"
+    max_orphans: 0
+
+  - code: orphan_referrals_patient_check
+    name: "Orphan Referrals Missing Patient"
+    type: "INTEGRITY"
+    table: "analytics.fact_referral"
+    severity: "CRITICAL"
+    max_orphans: 0
+
+  # 3. Duplicate Growth Checks
+  - code: duplicate_patients_check
+    name: "Duplicate Current Patient Natural Keys"
+    type: "DUPLICATE"
+    table: "analytics.dim_patient"
+    severity: "CRITICAL"
+    max_duplicates: 0
+
+  - code: duplicate_encounters_check
+    name: "Duplicate Encounter Natural Keys"
+    type: "DUPLICATE"
+    table: "analytics.fact_encounter"
+    severity: "CRITICAL"
+    max_duplicates: 0
+
+  - code: duplicate_appointments_check
+    name: "Duplicate Appointment Natural Keys"
+    type: "DUPLICATE"
+    table: "analytics.fact_appointment"
+    severity: "CRITICAL"
+    max_duplicates: 0
+
+  - code: duplicate_referrals_check
+    name: "Duplicate Referral Natural Keys"
+    type: "DUPLICATE"
+    table: "analytics.fact_referral"
+    severity: "CRITICAL"
+    max_duplicates: 0
+
+  # 4. Freshness Checks
+  - code: encounter_freshness_check
+    name: "Encounter Data Freshness"
+    type: "FRESHNESS"
+    table: "analytics.fact_encounter"
+    severity: "WARNING"
+    max_freshness_hours: 48.0
+
+  - code: appointment_freshness_check
+    name: "Appointment Data Freshness"
+    type: "FRESHNESS"
+    table: "analytics.fact_appointment"
+    severity: "WARNING"
+    max_freshness_hours: 48.0
+
+  - code: referral_freshness_check
+    name: "Referral Data Freshness"
+    type: "FRESHNESS"
+    table: "analytics.fact_referral"
+    severity: "WARNING"
+    max_freshness_hours: 48.0
+
+  # 5. Volume Checks
+  - code: encounter_volume_drop_check
+    name: "Encounter Volume Deviation"
+    type: "VOLUME"
+    table: "analytics.fact_encounter"
+    severity: "WARNING"
+    max_drop_percent: 40.0
+
+  # 6. Clinical Validity Checks
+  - code: biometric_vitals_validity_check
+    name: "Vitals Biometric Boundary Validity"
+    type: "VALIDITY"
+    table: "analytics.fact_vital"
+    severity: "WARNING"
+    max_invalid_count: 0
+
+  # 7. Schema Drift Checks
+  - code: schema_drift_detection
+    name: "Analytical Star Schema Drift Detection"
+    type: "SCHEMA"
+    table: "analytics.*"
+    severity: "CRITICAL"
+    allow_untracked_columns: false
+
+  # 8. Anomaly Checks
+  - code: kpi_boundary_anomaly_check
+    name: "KPI Range & Non-Negativity Anomalies"
+    type: "ANOMALY"
+    table: "analytics.metric_results"
+    severity: "WARNING"
+    max_anomalies: 0

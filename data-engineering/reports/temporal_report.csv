@@ -1,0 +1,19 @@
+Table,Temporal_Rule,Description,Evaluated_Records,Violations_Count,Violation_Percentage,Status
+encounters,Encounter End >= Encounter Start,Encounter ended before it started,21,0,0.0,PASS
+appointments,Appointment Date >= Booking Date,Appointment booked in the past relative to creation,637,0,0.0,PASS
+queue_entries,Queue Consultation Start >= Queue Check-in,Queue consultation started before patient checked in,17,0,0.0,PASS
+queue_entries,Queue Completed >= Queue Started,Queue consultation completed before it started,15,0,0.0,PASS
+consultations,Teleconsultation Room End >= Room Start,"Query Error: (psycopg.errors.UndefinedColumn) column ""actual_end"" does not exist
+LINE 1: SELECT COUNT(*) FROM consultations WHERE actual_end IS NOT N...
+                                                 ^
+[SQL: SELECT COUNT(*) FROM consultations WHERE actual_end IS NOT NULL AND actual_start IS NOT NULL]
+(Background on this error at: https://sqlalche.me/e/20/f405)",0,0,0.0,ERROR
+consents,Consent Valid Until > Valid From,"Query Error: (psycopg.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+[SQL: SELECT COUNT(*) FROM consents]
+(Background on this error at: https://sqlalche.me/e/20/2j85)",0,0,0.0,ERROR
+diagnostic_results,Lab Verification Time >= Order Time,"Query Error: (psycopg.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+[SQL: SELECT COUNT(*) FROM diagnostic_results r JOIN diagnostic_order_items i ON r.diagnostic_order_item_id = i.id JOIN diagnostic_orders o ON i.diagnostic_order_id = o.id WHERE r.verified_at IS NOT NULL]
+(Background on this error at: https://sqlalche.me/e/20/2j85)",0,0,0.0,ERROR
+patients,Patient DOB <= Current Date,"Query Error: (psycopg.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+[SQL: SELECT COUNT(*) FROM patients]
+(Background on this error at: https://sqlalche.me/e/20/2j85)",0,0,0.0,ERROR

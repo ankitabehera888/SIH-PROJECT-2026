@@ -1,0 +1,5 @@
+Resource,Source,Total,Exported,Failed,Unmapped
+Patient,patients,833,833,0,0
+Encounter,encounters,371,371,0,0
+Observation,vitals,112,527,0,0
+MedicationRequest,prescriptions,110,110,0,0

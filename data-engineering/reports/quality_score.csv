@@ -1,0 +1,13 @@
+Table,Completeness_Score,Consistency_Score,Validity_Score,Integrity_Score,Timeliness_Score,Overall_Score,Grade
+prescription_items,97.9,100.0,100.0,100.0,100.0,99.5,A (Excellent)
+diagnostic_results,97.7,100.0,100.0,100.0,100.0,99.4,A (Excellent)
+consultations,97.5,100.0,100.0,100.0,100.0,99.4,A (Excellent)
+encounters,97.2,100.0,100.0,100.0,100.0,99.3,A (Excellent)
+facilities,96.7,100.0,100.0,100.0,100.0,99.2,A (Excellent)
+queue_entries,96.6,100.0,100.0,100.0,100.0,99.2,A (Excellent)
+prescriptions,96.3,100.0,100.0,100.0,100.0,99.1,A (Excellent)
+appointments,95.3,100.0,100.0,100.0,100.0,98.8,A (Excellent)
+diagnostic_orders,94.8,100.0,100.0,100.0,100.0,98.7,A (Excellent)
+vitals,94.6,100.0,100.0,100.0,100.0,98.6,A (Excellent)
+referrals,89.5,100.0,100.0,100.0,100.0,97.4,A (Excellent)
+patients,92.9,50.0,100.0,100.0,100.0,85.7,B (Good)

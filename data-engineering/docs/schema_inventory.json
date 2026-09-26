@@ -1,0 +1,3084 @@
+{
+  "alembic_version": {
+    "columns": [
+      {
+        "name": "version_num",
+        "type": "VARCHAR(32)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      }
+    ],
+    "primary_key": [
+      "version_num"
+    ],
+    "foreign_keys": []
+  },
+  "appointments": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "provider_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "appointment_date",
+        "type": "DATE",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "start_time",
+        "type": "TIME",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "end_time",
+        "type": "TIME",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "appointment_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "reason",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancellation_reason",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "cancelled_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "provider_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "consents": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "consent_artefact_id",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "purpose",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scope",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "granted_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "granted_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "expires_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "revoked_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "granted_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "consultation_participants": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "consultation_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "role",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "joined_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "left_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "duration_seconds",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "connection_status",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "reconnect_count",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "consultation_id"
+        ],
+        "referred_table": "consultations",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "consultations": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "appointment_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "provider_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "consultation_type",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "room_name",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "room_url",
+        "type": "VARCHAR(512)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_start",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_end",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "started_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "ended_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "encounter_id",
+        "type": "UUID",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "appointment_id"
+        ],
+        "referred_table": "appointments",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "encounter_id"
+        ],
+        "referred_table": "encounters",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "provider_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "diagnostic_order_items": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "diagnostic_order_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "diagnostic_test_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "specimen_collected_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "performed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "diagnostic_order_id"
+        ],
+        "referred_table": "diagnostic_orders",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "diagnostic_test_id"
+        ],
+        "referred_table": "diagnostic_tests",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "diagnostic_orders": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "encounter_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "ordering_provider_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "priority",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "ordered_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancellation_reason",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "cancelled_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "encounter_id"
+        ],
+        "referred_table": "encounters",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "ordering_provider_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "diagnostic_results": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "diagnostic_order_item_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "result_value",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "unit",
+        "type": "VARCHAR(50)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "reference_range",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "abnormal_flag",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "result_status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "performed_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "verified_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "verified_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "diagnostic_order_item_id"
+        ],
+        "referred_table": "diagnostic_order_items",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "verified_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "diagnostic_tests": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "code",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR(200)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "category",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "specimen_type",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "description",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": []
+  },
+  "encounters": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "appointment_id",
+        "type": "UUID",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "provider_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "encounter_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "started_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "ended_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "chief_complaint",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "clinical_notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "appointment_id"
+        ],
+        "referred_table": "appointments",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "provider_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "facilities": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR(150)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_code",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "address",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "phone",
+        "type": "VARCHAR(20)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": []
+  },
+  "interoperability_audits": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "action",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "resource_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "resource_id",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "purpose",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "details",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "medications": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR(200)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "generic_name",
+        "type": "VARCHAR(200)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "strength",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "dosage_form",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "route",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "unit",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": []
+  },
+  "notification_preferences": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "email_enabled",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "sms_enabled",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "in_app_enabled",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "appointment_reminders",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "referral_notifications",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "diagnostic_notifications",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "prescription_notifications",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "preferred_email",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "preferred_phone",
+        "type": "VARCHAR(50)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "notifications": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notification_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "channel",
+        "type": "VARCHAR(20)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "subject",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "message",
+        "type": "TEXT",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(20)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "is_read",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "read_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "sent_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "failed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "retry_count",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "error_message",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "provider_message_id",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "related_entity_type",
+        "type": "VARCHAR(50)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "related_entity_id",
+        "type": "UUID",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "idempotency_key",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "patient_identifiers": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "system",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "value",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "identifier_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "verified_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "patients": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_number",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "first_name",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "middle_name",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "last_name",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "date_of_birth",
+        "type": "DATE",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "gender",
+        "type": "VARCHAR(20)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "phone",
+        "type": "VARCHAR(20)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "email",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "address",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "emergency_contact_name",
+        "type": "VARCHAR(150)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "emergency_contact_phone",
+        "type": "VARCHAR(20)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "user_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "prescription_items": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "prescription_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "medication_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "dosage",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "frequency",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "duration",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "duration_unit",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "route",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "quantity",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "instructions",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "medication_id"
+        ],
+        "referred_table": "medications",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "prescription_id"
+        ],
+        "referred_table": "prescriptions",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "prescriptions": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "encounter_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "prescriber_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "prescribed_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "issued_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "issued_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancellation_reason",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "cancelled_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "encounter_id"
+        ],
+        "referred_table": "encounters",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "issued_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "prescriber_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "queue_entries": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "appointment_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "queue_date",
+        "type": "DATE",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "queue_number",
+        "type": "VARCHAR(20)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "priority",
+        "type": "VARCHAR(20)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "checked_in_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "called_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "consultation_started_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "completed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "appointment_id"
+        ],
+        "referred_table": "appointments",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "referrals": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "encounter_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "referring_facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "referring_provider_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "receiving_facility_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "receiving_provider_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "referral_type",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "priority",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "reason",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "clinical_summary",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "requested_specialty",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "requested_date",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "accepted_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "accepted_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "rejected_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "rejected_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "rejection_reason",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_date",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "scheduled_time",
+        "type": "TIME",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "completed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "completed_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "outcome_status",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "outcome_notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "follow_up_required",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "follow_up_date",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancelled_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "cancellation_reason",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "accepted_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "cancelled_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "completed_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "created_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "encounter_id"
+        ],
+        "referred_table": "encounters",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "receiving_facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "receiving_provider_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "referring_facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "referring_provider_id"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "rejected_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "scheduled_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "updated_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "system_checks": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": "nextval('\"public\".system_checks_id_seq'::regclass)",
+        "is_primary_key": true
+      },
+      {
+        "name": "check_name",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": []
+  },
+  "users": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": "nextval('\"public\".users_id_seq'::regclass)",
+        "is_primary_key": true
+      },
+      {
+        "name": "email",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "password_hash",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "role",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "facility_id",
+        "type": "UUID",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "facility_id"
+        ],
+        "referred_table": "facilities",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "vitals": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": true
+      },
+      {
+        "name": "encounter_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "patient_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "recorded_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "recorded_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": "now()",
+        "is_primary_key": false
+      },
+      {
+        "name": "temperature",
+        "type": "DOUBLE PRECISION",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "heart_rate",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "respiratory_rate",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "systolic_bp",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "diastolic_bp",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "spo2",
+        "type": "DOUBLE PRECISION",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "weight",
+        "type": "DOUBLE PRECISION",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "height",
+        "type": "DOUBLE PRECISION",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "is_primary_key": false
+      }
+    ],
+    "primary_key": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "constrained_columns": [
+          "encounter_id"
+        ],
+        "referred_table": "encounters",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "patient_id"
+        ],
+        "referred_table": "patients",
+        "referred_columns": [
+          "id"
+        ]
+      },
+      {
+        "constrained_columns": [
+          "recorded_by"
+        ],
+        "referred_table": "users",
+        "referred_columns": [
+          "id"
+        ]
+      }
+    ]
+  }
+}

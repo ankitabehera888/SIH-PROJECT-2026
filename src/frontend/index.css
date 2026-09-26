@@ -1,0 +1,1201 @@
+@import "tailwindcss";
+
+/* App dark mode is <html data-theme="dark">, not the OS preference.
+   Without this, every dark: utility follows prefers-color-scheme and
+   fights the manual ThemeToggle. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SAHAAY · "LUMINOUS CLINIC" DESIGN SYSTEM
+   A light-mode system built for depth: layered shadows, iridescent glass,
+   real CSS 3D, and a vitals-derived accent spectrum.
+   Every legacy class name is preserved so existing pages inherit the
+   upgrade without any markup changes.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Emerald ramp · the SAHAAY spine ───────────────────────────────── */
+  --color-sahaay-50:  #EDFCF3;
+  --color-sahaay-100: #D3F7E1;
+  --color-sahaay-200: #A9EFC6;
+  --color-sahaay-300: #74E2A5;
+  --color-sahaay-400: #3ECD82;
+  --color-sahaay-500: #17B366;
+  --color-sahaay-600: #0C9152;
+  --color-sahaay-700: #0A7343;
+  --color-sahaay-800: #0B5B37;
+  --color-sahaay-900: #0A4A2F;
+  --color-sahaay-950: #032217;
+
+  /* Brand ink — 9.2:1 on white */
+  --color-sahaay-deep: #0E4F3A;
+
+  /* Canvas */
+  --color-sahaay-surface:     #F2FBF5;
+  --color-sahaay-surface-alt: #E7F7ED;
+
+  /* ── Vital spectrum · one hue per body signal ──────────────────────── */
+  /* -graphic = for fills/strokes · -ink = AA-safe for text on white */
+  --color-vital-pulse:     #FF4D6D;   /* heart rate, urgency  */
+  --color-vital-pulse-ink: #C41E3F;
+  --color-vital-oxy:       #0EA5C9;   /* oxygen, diagnostics  */
+  --color-vital-oxy-ink:   #076A82;
+  --color-vital-nerve:     #7C5CFF;   /* AI, neural, assist   */
+  --color-vital-nerve-ink: #5533DB;
+  --color-vital-sun:       #F59E0B;   /* pending, follow-up   */
+  --color-vital-sun-ink:   #92610A;
+
+  /* ── Ink scale ─────────────────────────────────────────────────────── */
+  --color-ink-900: #05140E;
+  --color-ink-800: #0B2318;
+  --color-ink-700: #123125;
+  --color-ink-600: #274A3B;
+  --color-ink-500: #446155;
+  --color-ink-400: #6B8578;
+  --color-ink-300: #9BAFA5;
+  --color-ink-200: #C6D5CD;
+
+  /* ── Type ──────────────────────────────────────────────────────────── */
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', 'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root {
+  /* ── Layered elevation · light UI needs stacked shadows, never one blur ─ */
+  --shadow-1:
+    0 1px 2px rgba(5, 20, 14, 0.05),
+    0 1px 1px rgba(5, 20, 14, 0.03);
+  --shadow-2:
+    0 2px 4px rgba(5, 20, 14, 0.04),
+    0 6px 12px rgba(14, 79, 58, 0.06),
+    0 1px 2px rgba(5, 20, 14, 0.04);
+  --shadow-3:
+    0 1px 2px rgba(5, 20, 14, 0.04),
+    0 8px 16px rgba(14, 79, 58, 0.07),
+    0 24px 48px rgba(14, 79, 58, 0.07);
+  --shadow-4:
+    0 2px 4px rgba(5, 20, 14, 0.04),
+    0 12px 24px rgba(14, 79, 58, 0.08),
+    0 40px 80px rgba(14, 79, 58, 0.10);
+  --shadow-lift:
+    0 4px 8px rgba(5, 20, 14, 0.05),
+    0 18px 36px rgba(14, 79, 58, 0.12),
+    0 50px 100px rgba(14, 79, 58, 0.12);
+
+  --glow-emerald: 0 0 0 1px rgba(23, 179, 102, 0.22), 0 0 32px rgba(23, 179, 102, 0.20);
+  --glow-pulse:   0 0 0 1px rgba(255, 77, 109, 0.24), 0 0 32px rgba(255, 77, 109, 0.22);
+
+  /* Inset top highlight — what makes light glass read as glass */
+  --rim-light: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  /* ── Motion ────────────────────────────────────────────────────────── */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.30, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.50, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+
+  --dur-instant: 120ms;
+  --dur-fast:    220ms;
+  --dur-base:    380ms;
+  --dur-slow:    620ms;
+  --dur-epic:    1100ms;
+
+  /* ── Radii ─────────────────────────────────────────────────────────── */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-2xl: 36px;
+
+  /* Pointer position, written by TiltCard / spotlight surfaces */
+  --mx: 50%;
+  --my: 50%;
+
+  /* Film grain — keeps large light surfaces from reading as dead flat */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #F2FBF5;
+    color: #123125;
+    /* `clip` contains overflow WITHOUT making body a scroll container —
+       `hidden` would, and that silently breaks every position:sticky inside. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    /* Opt into modern numerals + real kerning app-wide */
+    font-feature-settings: 'cv11', 'ss01', 'kern';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    color: #05140E;
+    text-wrap: balance;
+  }
+
+  p, li { text-wrap: pretty; }
+
+  /* Every number in the app aligns in a column */
+  .tnum, table td, table th {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Visible, branded focus — never removed */
+  :focus-visible {
+    outline: 2px solid var(--color-sahaay-500, #17B366);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+
+  /* ═══════════════════════════════════════════════════════════════════
+     GLASS · legacy names, rebuilt with rim-light + layered elevation
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .glass-card {
+    position: relative;
+    /* Backdrop blur is the single most expensive effect during scroll — every
+       card re-blurs everything behind it per frame. A small blur over a
+       nearly-opaque wash keeps the glass look at a fraction of the cost. */
+    background:
+      linear-gradient(168deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.86) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(14, 79, 58, 0.09);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-2), var(--rim-light);
+    transition:
+      box-shadow var(--dur-base) var(--ease-out-expo),
+      transform var(--dur-base) var(--ease-out-expo),
+      border-color var(--dur-base) var(--ease-out-expo);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(14, 79, 58, 0.16);
+    box-shadow: var(--shadow-3), var(--rim-light);
+  }
+
+  .glass-card-elevated {
+    position: relative;
+    background:
+      linear-gradient(168deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.90) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(14, 79, 58, 0.10);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-3), var(--rim-light);
+    transition:
+      box-shadow var(--dur-base) var(--ease-out-expo),
+      transform var(--dur-base) var(--ease-out-expo);
+  }
+
+  .glass-card-elevated:hover {
+    box-shadow: var(--shadow-4), var(--rim-light);
+  }
+
+  /* Iridescent top edge — the signature detail of the system */
+  .lum-edge::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(23, 179, 102, 0.55) 18%,
+      rgba(14, 165, 201, 0.65) 42%,
+      rgba(124, 92, 255, 0.55) 68%,
+      transparent 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out-expo);
+  }
+
+  .lum-edge:hover::before { opacity: 1; }
+
+  /* Cursor-tracked spotlight. Set --mx/--my in JS. */
+  .spotlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx) var(--my),
+      rgba(23, 179, 102, 0.13),
+      rgba(14, 165, 201, 0.07) 40%,
+      transparent 68%
+    );
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out-expo);
+    pointer-events: none;
+  }
+
+  .spotlight:hover::after { opacity: 1; }
+
+  /* Sweeping sheen on hover */
+  .lum-sheen { position: relative; overflow: hidden; }
+
+  .lum-sheen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+    transform: skewX(-18deg);
+    pointer-events: none;
+    transition: left var(--dur-slow) var(--ease-out-quart);
+  }
+
+  .lum-sheen:hover::after { left: 130%; }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     3D STAGE · real perspective, used by the care corridor + tilt cards
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .stage-3d {
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+  }
+
+  .stage-3d-deep { perspective: 900px; }
+
+  .layer-3d {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  /* Pushes an element toward the viewer inside a preserve-3d parent */
+  .pop-3d  { transform: translateZ(40px); }
+  .pop-3d-sm { transform: translateZ(20px); }
+  .pop-3d-lg { transform: translateZ(80px); }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     GRADIENTS · legacy names retained
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .sahaay-gradient {
+    background: linear-gradient(135deg, #0E4F3A 0%, #0C9152 48%, #17B366 100%);
+  }
+
+  .sahaay-gradient-soft {
+    background: linear-gradient(135deg, #F2FBF5 0%, #E7F7ED 50%, #D3F7E1 100%);
+  }
+
+  .sahaay-gradient-deep {
+    background:
+      radial-gradient(120% 90% at 12% 0%, #10614A 0%, transparent 58%),
+      radial-gradient(110% 80% at 90% 8%, #0A7343 0%, transparent 52%),
+      linear-gradient(168deg, #05281C 0%, #073B2A 38%, #0B4030 100%);
+  }
+
+  /* Holographic emerald→cyan→violet, animated */
+  .holo-text {
+    background: linear-gradient(
+      100deg,
+      #0E4F3A 0%,
+      #17B366 22%,
+      #0EA5C9 46%,
+      #7C5CFF 68%,
+      #17B366 88%,
+      #0E4F3A 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: holoShift 9s linear infinite;
+  }
+
+  .holo-line {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #17B366 22%,
+      #0EA5C9 50%,
+      #7C5CFF 78%,
+      transparent
+    );
+    background-size: 250% 100%;
+    animation: holoShift 7s linear infinite;
+  }
+
+  /* Grain overlay — apply to big surfaces */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--noise);
+    background-size: 140px 140px;
+    /* No mix-blend-mode — blending forces per-frame re-compositing of
+       everything beneath the surface. Plain opacity is visually identical
+       at this strength. */
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Fine medical graph paper */
+  .grid-paper {
+    background-image:
+      linear-gradient(rgba(14, 79, 58, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 79, 58, 0.055) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .grid-paper-fine {
+    background-image:
+      linear-gradient(rgba(14, 79, 58, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 79, 58, 0.04) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     BUTTONS · legacy names, upgraded feel
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .sahaay-btn-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    background: linear-gradient(135deg, #0E4F3A 0%, #0C9152 55%, #17B366 100%);
+    color: #fff;
+    border: none;
+    border-radius: var(--r-md);
+    padding: 11px 24px;
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition:
+      transform var(--dur-fast) var(--ease-spring),
+      box-shadow var(--dur-fast) var(--ease-out-expo),
+      filter var(--dur-fast) ease;
+    box-shadow:
+      0 1px 2px rgba(5, 20, 14, 0.18),
+      0 6px 16px rgba(14, 79, 58, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  /* Light sweep on hover */
+  .sahaay-btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.30) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform var(--dur-slow) var(--ease-out-quart);
+  }
+
+  .sahaay-btn-primary:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.12);
+    box-shadow:
+      0 2px 4px rgba(5, 20, 14, 0.18),
+      0 12px 28px rgba(14, 79, 58, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  .sahaay-btn-primary:hover::after { transform: translateX(100%); }
+
+  .sahaay-btn-primary:active {
+    transform: translateY(0) scale(0.985);
+    box-shadow: 0 1px 3px rgba(14, 79, 58, 0.28);
+  }
+
+  .sahaay-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #0E4F3A;
+    border: 1px solid rgba(14, 79, 58, 0.16);
+    border-radius: var(--r-md);
+    padding: 11px 24px;
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    box-shadow: var(--shadow-1), var(--rim-light);
+    transition:
+      transform var(--dur-fast) var(--ease-spring),
+      box-shadow var(--dur-fast) var(--ease-out-expo),
+      border-color var(--dur-fast) ease,
+      background var(--dur-fast) ease;
+  }
+
+  .sahaay-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(14, 79, 58, 0.30);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2), var(--rim-light);
+  }
+
+  .sahaay-btn-secondary:active { transform: translateY(0) scale(0.985); }
+
+  .sahaay-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    background: transparent;
+    color: #0E4F3A;
+    border: none;
+    border-radius: var(--r-md);
+    padding: 11px 20px;
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background var(--dur-fast) ease, transform var(--dur-fast) var(--ease-spring);
+  }
+
+  .sahaay-btn-ghost:hover {
+    background: rgba(14, 79, 58, 0.07);
+    transform: translateY(-1px);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     INPUTS
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .sahaay-input {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(14, 79, 58, 0.14);
+    border-radius: var(--r-md);
+    font-size: 14px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #0B2318;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: inset 0 1px 2px rgba(5, 20, 14, 0.03);
+    transition:
+      border-color var(--dur-fast) ease,
+      box-shadow var(--dur-fast) ease,
+      background var(--dur-fast) ease;
+    outline: none;
+  }
+
+  .sahaay-input::placeholder { color: #9BAFA5; }
+
+  .sahaay-input:hover { border-color: rgba(14, 79, 58, 0.24); }
+
+  .sahaay-input:focus {
+    border-color: #17B366;
+    background: #fff;
+    box-shadow:
+      0 0 0 4px rgba(23, 179, 102, 0.13),
+      inset 0 1px 2px rgba(5, 20, 14, 0.02);
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     BADGES · legacy names, AA-safe pairs
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .sahaay-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 650;
+    letter-spacing: 0.005em;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+
+  .badge-success {
+    background: rgba(23, 179, 102, 0.12);
+    color: #0A5F38;
+    border-color: rgba(23, 179, 102, 0.24);
+  }
+
+  .badge-warning {
+    background: rgba(245, 158, 11, 0.13);
+    color: #92610A;
+    border-color: rgba(245, 158, 11, 0.26);
+  }
+
+  .badge-danger {
+    background: rgba(255, 77, 109, 0.12);
+    color: #C41E3F;
+    border-color: rgba(255, 77, 109, 0.26);
+  }
+
+  .badge-info {
+    background: rgba(14, 165, 201, 0.12);
+    color: #076A82;
+    border-color: rgba(14, 165, 201, 0.26);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SIDEBAR · legacy names
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .sahaay-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: var(--r-md);
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.68);
+    cursor: pointer;
+    transition: all var(--dur-fast) var(--ease-out-expo);
+    text-decoration: none;
+  }
+
+  .sahaay-sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #fff;
+  }
+
+  .sahaay-sidebar-link.active {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-weight: 650;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     PAGE CANVAS · aurora mesh + grain
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .sahaay-page-bg {
+    position: relative;
+    min-height: 100vh;
+    /* No background-attachment: fixed — it forces a full-page repaint of all
+       four gradient layers on every scroll frame. The element already spans
+       the full content height, so the mesh looks identical without it. */
+    background:
+      radial-gradient(90% 65% at 8% -5%,  rgba(23, 179, 102, 0.13) 0%, transparent 55%),
+      radial-gradient(75% 55% at 98% 4%,  rgba(14, 165, 201, 0.11) 0%, transparent 52%),
+      radial-gradient(85% 60% at 55% 108%, rgba(124, 92, 255, 0.09) 0%, transparent 58%),
+      linear-gradient(168deg, #F4FCF7 0%, #EAF8EF 45%, #F7FEF9 100%);
+  }
+
+  .sahaay-page-bg::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: var(--noise);
+    background-size: 140px 140px;
+    /* mix-blend-mode: multiply made the compositor re-blend the entire
+       viewport every frame while scrolling. Plain low-opacity noise reads
+       the same on this light canvas and costs nothing. */
+    opacity: 0.025;
+    transform: translateZ(0);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Slowly drifting aurora blob. Static by default — callers opt into
+     animate-drift only where the cost is justified. */
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(48px);
+    pointer-events: none;
+    transform: translateZ(0);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     LEGACY ANIMATION UTILITIES · kept
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .animate-float       { animation: float 6s var(--ease-in-out) infinite; }
+  .animate-float-delay { animation: float 6s var(--ease-in-out) 2s infinite; }
+  .animate-pulse-soft  { animation: pulse-soft 3s var(--ease-in-out) infinite; }
+  .animate-spin-slow   { animation: spin 20s linear infinite; }
+  .animate-count-up    { animation: countUp 0.8s var(--ease-out-expo) forwards; }
+  .animate-drift       { animation: drift 22s var(--ease-in-out) infinite; }
+  .animate-drift-slow  { animation: drift 34s var(--ease-in-out) infinite reverse; }
+  .animate-breathe     { animation: breathe 5s var(--ease-in-out) infinite; }
+  .animate-halo        { animation: halo 2.6s var(--ease-out-quart) infinite; }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--dur-slow) var(--ease-out-expo),
+                transform var(--dur-slow) var(--ease-out-expo);
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     IMAGE TREATMENTS · legacy names
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .img-fade-in   { animation: imgFadeIn 1.2s var(--ease-out-expo) forwards; }
+  .img-parallax  { will-change: transform; }
+  .img-shimmer   { position: relative; overflow: hidden; }
+
+  .img-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.16) 45%,
+      rgba(255, 255, 255, 0.28) 50%,
+      rgba(255, 255, 255, 0.16) 55%,
+      transparent 60%
+    );
+    animation: shimmer 3.4s var(--ease-in-out) infinite;
+    pointer-events: none;
+  }
+
+  .img-overlay-gradient { position: relative; }
+
+  .img-overlay-gradient::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 79, 58, 0.10), rgba(14, 165, 201, 0.06));
+    pointer-events: none;
+  }
+
+  .img-float-slow   { animation: imgFloatSlow 8s var(--ease-in-out) infinite; }
+  .img-float-medium { animation: imgFloatMedium 6s var(--ease-in-out) infinite; }
+
+  .img-zoom-hover {
+    transition: transform var(--dur-epic) var(--ease-out-expo),
+                filter var(--dur-slow) ease;
+  }
+
+  .img-zoom-hover:hover {
+    transform: scale(1.06);
+    filter: brightness(1.04) saturate(1.08);
+  }
+
+  .img-ken-burns { animation: kenBurns 20s var(--ease-in-out) infinite alternate; }
+  .img-breathing { animation: breathing 4s var(--ease-in-out) infinite; }
+
+  .img-faded-wash {
+    filter: saturate(0.78) brightness(1.04) contrast(1.02);
+    opacity: 0.88;
+    transition: filter var(--dur-slow) ease, opacity var(--dur-slow) ease;
+  }
+
+  .img-faded-wash:hover {
+    filter: saturate(1.05) brightness(1) contrast(1);
+    opacity: 1;
+  }
+
+  /* Duotone emerald treatment for editorial imagery */
+  .img-duotone {
+    filter: saturate(0.55) contrast(1.08);
+    mix-blend-mode: luminosity;
+  }
+
+  .grid-mosaic img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--r-md);
+  }
+
+  .shader-frame {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #080808;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     MARQUEE · 3D cylinder ticker
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+  }
+
+  .marquee-track-rev { animation-direction: reverse; }
+  .marquee-mask:hover .marquee-track { animation-play-state: paused; }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SCROLLBAR + SELECTION
+     ═══════════════════════════════════════════════════════════════════ */
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   KEYFRAMES
+   ═════════════════════════════════════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.8; transform: scale(1.02); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+
+@keyframes ecg-line {
+  0%   { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes node-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(23, 179, 102, 0.32)); }
+  50%      { filter: drop-shadow(0 0 14px rgba(23, 179, 102, 0.62)); }
+}
+
+@keyframes imgFadeIn {
+  from { opacity: 0; transform: scale(1.08) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-150%); }
+  50%      { transform: translateX(150%); }
+}
+
+@keyframes imgFloatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%      { transform: translateY(-8px) rotate(0.5deg); }
+  66%      { transform: translateY(4px) rotate(-0.3deg); }
+}
+
+@keyframes imgFloatMedium {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-10px) scale(1.01); }
+}
+
+@keyframes kenBurns {
+  0%   { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+
+@keyframes breathing {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.02); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.9; }
+  50%      { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes holoShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 250% 50%; }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(4%, -5%, 0) scale(1.10); }
+  66%      { transform: translate3d(-4%, 4%, 0) scale(0.94); }
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes halo {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: rgba(14, 79, 58, 0.04); }
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(23, 179, 102, 0.5), rgba(14, 79, 58, 0.5));
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(23, 179, 102, 0.75), rgba(14, 79, 58, 0.75));
+  background-clip: padding-box;
+}
+
+::selection {
+  background: rgba(23, 179, 102, 0.22);
+  color: #0A4A2F;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   DARK THEME · toggled by ThemeContext via <html data-theme="dark">
+   Tailwind v4 utilities reference the @theme CSS variables, so remapping
+   them here flips every text-ink-*, text-gray-*, bg-sahaay-surface, alert
+   wash, and border across the whole app with zero markup changes.
+   ═════════════════════════════════════════════════════════════════════ */
+
+[data-theme='dark'] {
+  /* Ink scale inverted — light text, dark borders */
+  --color-ink-900: #EAF4EE;
+  --color-ink-800: #DCE9E1;
+  --color-ink-700: #C4D6CC;
+  --color-ink-600: #A9BFB4;
+  --color-ink-500: #8AA398;
+  --color-ink-400: #5F7A6C;
+  --color-ink-300: #3D5A4C;
+  --color-ink-200: #24352C;
+
+  /* Canvas */
+  --color-sahaay-surface: #0D1A13;
+  --color-sahaay-surface-alt: #13241B;
+  --color-sahaay-50: #0F1F17;
+  --color-sahaay-100: #163026;
+  --color-sahaay-200: #1E4534;
+
+  /* Neutral scale inverted — older pages use raw gray utilities */
+  --color-gray-50: #0C1712;
+  --color-gray-100: #142219;
+  --color-gray-200: #22332A;
+  --color-gray-300: #33463B;
+  --color-gray-400: #5F7A6C;
+  --color-gray-500: #7E9A8D;
+  --color-gray-600: #A9BFB4;
+  --color-gray-700: #C4D6CC;
+  --color-gray-800: #DCE9E1;
+  --color-gray-900: #EAF4EE;
+
+  /* Soft status washes used on dashboards/cards */
+  --color-amber-50: #241A08;
+  --color-amber-100: #31240C;
+  --color-amber-200: #4A3A1A;
+  --color-amber-300: #78350F;
+  --color-amber-700: #FCD34D;
+  --color-blue-50: #0A1A26;
+  --color-blue-100: #0E2433;
+  --color-blue-200: #17394E;
+  --color-purple-50: #17102B;
+  --color-purple-100: #1F1638;
+  --color-purple-200: #2E2154;
+  --color-red-50: #2A0F14;
+  --color-red-100: #37141B;
+  --color-green-50: #0C1F14;
+  --color-green-100: #11291B;
+
+  /* Urgency-tier washes (sky/rose/orange) — without these the banner kept a
+     light fill while ink remapped to near-white text → unreadable card. */
+  --color-sky-50: #082F49;
+  --color-sky-100: #0C4A6E;
+  --color-sky-200: #155E75;
+  --color-sky-300: #0E7490;
+  --color-sky-700: #7DD3FC;
+  --color-rose-50: #2A0F14;
+  --color-rose-100: #4C0519;
+  --color-rose-200: #881337;
+  --color-rose-300: #9F1239;
+  --color-rose-700: #FDA4AF;
+  --color-orange-50: #431407;
+  --color-orange-100: #7C2D12;
+  --color-orange-200: #9A3412;
+  --color-orange-300: #C2410C;
+  --color-orange-700: #FDBA74;
+
+  /* Elevation: light-UI mint shadows are invisible on dark — go black */
+  --rim-light: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.35), 0 6px 12px rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 16px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.3);
+  --shadow-4: 0 2px 4px rgba(0, 0, 0, 0.4), 0 12px 24px rgba(0, 0, 0, 0.4), 0 40px 80px rgba(0, 0, 0, 0.35);
+  --shadow-lift: 0 4px 8px rgba(0, 0, 0, 0.4), 0 18px 36px rgba(0, 0, 0, 0.4), 0 50px 100px rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+  [data-theme='dark'] body {
+    background: #060F0A;
+    color: #DCE9E1;
+  }
+
+  /* Headings default near-white in dark mode — must stay in @layer base so
+     utility classes (text-sky-700 etc.) can still override. Unlayered, this
+     rule beat every utility and washed out tier headings on light cards. */
+  [data-theme='dark'] h1,
+  [data-theme='dark'] h2,
+  [data-theme='dark'] h3,
+  [data-theme='dark'] h4,
+  [data-theme='dark'] h5,
+  [data-theme='dark'] h6 {
+    color: #EAF4EE;
+  }
+}
+
+[data-theme='dark'] .sahaay-page-bg {
+  background:
+    radial-gradient(90% 65% at 8% -5%,  rgba(23, 179, 102, 0.10) 0%, transparent 55%),
+    radial-gradient(75% 55% at 98% 4%,  rgba(14, 165, 201, 0.08) 0%, transparent 52%),
+    radial-gradient(85% 60% at 55% 108%, rgba(124, 92, 255, 0.07) 0%, transparent 58%),
+    linear-gradient(168deg, #081510 0%, #0A1A12 45%, #060F0A 100%);
+}
+
+[data-theme='dark'] .glass-card {
+  background: linear-gradient(168deg, rgba(22, 36, 28, 0.92) 0%, rgba(15, 26, 20, 0.88) 100%);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme='dark'] .glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .glass-card-elevated {
+  background: linear-gradient(168deg, rgba(26, 42, 33, 0.95) 0%, rgba(17, 29, 22, 0.92) 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .sahaay-input {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #EAF4EE;
+}
+
+[data-theme='dark'] .sahaay-input:hover { border-color: rgba(255, 255, 255, 0.20); }
+
+[data-theme='dark'] .sahaay-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #17B366;
+}
+
+[data-theme='dark'] .sahaay-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #A9EFC6;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .sahaay-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme='dark'] .sahaay-btn-ghost { color: #A9EFC6; }
+
+[data-theme='dark'] .sahaay-btn-ghost:hover { background: rgba(255, 255, 255, 0.06); }
+
+/* sahaay-deep is a great button fill on dark but unreadable as text */
+[data-theme='dark'] .text-sahaay-deep { color: #74E2A5; }
+
+[data-theme='dark'] .sahaay-gradient-soft {
+  background: linear-gradient(135deg, #0C1A12 0%, #122419 50%, #0F1F16 100%);
+}
+
+[data-theme='dark'] .grid-paper {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+
+[data-theme='dark'] .grid-paper-fine {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Badges keep their translucent fills; only the ink needs lifting */
+[data-theme='dark'] .badge-success { color: #74E2A5; }
+[data-theme='dark'] .badge-warning { color: #FBBF24; }
+[data-theme='dark'] .badge-danger { color: #FB7185; }
+[data-theme='dark'] .badge-info { color: #38BDF8; }
+
+/* Translucent white panels (topbar hover states, list rows) become
+   translucent light-tint glass instead of milky overlays */
+[data-theme='dark'] .bg-white\/50 { background-color: rgba(255, 255, 255, 0.05); }
+[data-theme='dark'] .bg-white\/60 { background-color: rgba(255, 255, 255, 0.06); }
+[data-theme='dark'] .bg-white\/70 { background-color: rgba(255, 255, 255, 0.07); }
+[data-theme='dark'] .bg-white\/80 { background-color: rgba(13, 26, 19, 0.85); }
+[data-theme='dark'] .bg-white\/95 { background-color: rgba(10, 22, 15, 0.95); }
+[data-theme='dark'] .hover\:bg-white\/70:hover { background-color: rgba(255, 255, 255, 0.08); }
+
+/* Solid white surfaces (chat bubbles from the other party, AI replies,
+   secondary buttons) become dark raised panels; text inside already flips
+   via the gray remap */
+[data-theme='dark'] .bg-white {
+  background-color: #16241B;
+}
+
+/* Literal white gradient stops (from-white / to-white) — Tailwind bakes
+   var(--color-white) into the stops, which no token remap can reach */
+[data-theme='dark'] .from-white {
+  --tw-gradient-from: #16241B var(--tw-gradient-from-position);
+}
+[data-theme='dark'] .to-white {
+  --tw-gradient-to: #0F1F16 var(--tw-gradient-to-position);
+}
+
+/* Recharts tooltips render with an inline white style — restyle them for
+   dark mode (they are the white squares floating over the charts) */
+[data-theme='dark'] .recharts-default-tooltip {
+  background-color: #16241B !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+[data-theme='dark'] .recharts-default-tooltip .recharts-tooltip-label {
+  color: #EAF4EE !important;
+}
+[data-theme='dark'] .recharts-default-tooltip .recharts-tooltip-item {
+  color: #A9BFB4 !important;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); }
+
+[data-theme='dark'] ::selection {
+  background: rgba(23, 179, 102, 0.35);
+  color: #EAF4EE;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   REDUCED MOTION · every decorative animation stops, layout unchanged
+   ═════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-reveal { opacity: 1; transform: none; }
+  .marquee-track { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SETTINGS-PAGE ACCESSIBILITY + DISPLAY PREFS (toggled from SettingsPage)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Large text — base font bump (Settings > Accessibility) */
+.a11y-large-text body { font-size: 1.05rem; }
+
+/* High contrast — strengthen text + card borders */
+.a11y-high-contrast body { color: #05140E; }
+.a11y-high-contrast .glass-card,
+.a11y-high-contrast .glass-card-elevated { border: 2px solid #0E4F3A; }
+.a11y-high-contrast .text-gray-500 { color: #123125 !important; }
+.a11y-high-contrast .bg-sahaay-surface { background-color: #FFFFFF !important; }
+
+/* Reduce motion — same treatment as prefers-reduced-motion, user-forced */
+.a11y-reduce-motion html { scroll-behavior: auto; }
+.a11y-reduce-motion *,
+.a11y-reduce-motion *::before,
+.a11y-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Compact view — tighter cards (Settings > Display Preferences) */
+.display-compact .glass-card-elevated { padding: 1rem !important; }
+.display-compact .space-y-6 > * + * { margin-top: 0.75rem !important; }
+.display-compact .p-3 { padding: 0.5rem 0.75rem !important; }

@@ -1,0 +1,216 @@
+{
+  "run_id": "20260901_222843",
+  "pipeline": "healthcare_etl",
+  "source": "healthcare_dev",
+  "status": "success",
+  "started_at": "2026-09-01T22:28:43.933906+00:00",
+  "finished_at": "2026-09-01T22:28:53.447318+00:00",
+  "steps": {
+    "extract": "success",
+    "raw_validation": "success",
+    "stage": "success",
+    "dimensions": "success",
+    "facts": "success",
+    "reconcile": "warning"
+  },
+  "metrics": {
+    "extract": {
+      "manifest_path": "C:\\Users\\HP\\Documents\\SIH_PROJECT_2026\\data-engineering\\metadata\\extraction_manifest.json",
+      "total_tables_extracted": 24,
+      "total_rows_extracted": 7493
+    },
+    "raw_validation": {
+      "patients": {
+        "snapshot_file": "snapshot_2026-09-01.parquet",
+        "row_count": 912,
+        "columns_verified": 3,
+        "status": "PASSED"
+      },
+      "appointments": {
+        "snapshot_file": "snapshot_2026-09-01.parquet",
+        "row_count": 702,
+        "columns_verified": 4,
+        "status": "PASSED"
+      },
+      "encounters": {
+        "snapshot_file": "snapshot_2026-09-01.parquet",
+        "row_count": 415,
+        "columns_verified": 4,
+        "status": "PASSED"
+      },
+      "vitals": {
+        "snapshot_file": "snapshot_2026-09-01.parquet",
+        "row_count": 124,
+        "columns_verified": 3,
+        "status": "PASSED"
+      },
+      "prescriptions": {
+        "snapshot_file": "snapshot_2026-09-01.parquet",
+        "row_count": 122,
+        "columns_verified": 3,
+        "status": "PASSED"
+      },
+      "referrals": {
+        "snapshot_file": "snapshot_2026-09-01.parquet",
+        "row_count": 154,
+        "columns_verified": 3,
+        "status": "PASSED"
+      },
+      "facilities": {
+        "snapshot_file": "snapshot_2026-09-02.parquet",
+        "row_count": 839,
+        "columns_verified": 3,
+        "status": "PASSED"
+      }
+    },
+    "stage": {
+      "tables_staged": [
+        "patients",
+        "appointments",
+        "encounters",
+        "vitals",
+        "prescriptions",
+        "referrals",
+        "facilities"
+      ],
+      "report_path": "C:\\Users\\HP\\Documents\\SIH_PROJECT_2026\\data-engineering\\reports\\staging_quality_report.csv",
+      "counts": {
+        "patients": {
+          "input_rows": 912,
+          "output_rows": 912,
+          "valid_rows": 839,
+          "duplicates_flagged": 73,
+          "orphans_flagged": 0
+        },
+        "appointments": {
+          "input_rows": 702,
+          "output_rows": 702,
+          "valid_rows": 702,
+          "duplicates_flagged": 0,
+          "orphans_flagged": 0
+        },
+        "encounters": {
+          "input_rows": 415,
+          "output_rows": 415,
+          "valid_rows": 415,
+          "duplicates_flagged": 0,
+          "orphans_flagged": 0
+        },
+        "vitals": {
+          "input_rows": 124,
+          "output_rows": 124,
+          "valid_rows": 124,
+          "duplicates_flagged": 0,
+          "orphans_flagged": 0
+        },
+        "prescriptions": {
+          "input_rows": 122,
+          "output_rows": 122,
+          "valid_rows": 122,
+          "duplicates_flagged": 0,
+          "orphans_flagged": 0
+        },
+        "referrals": {
+          "input_rows": 154,
+          "output_rows": 154,
+          "valid_rows": 154,
+          "duplicates_flagged": 0,
+          "orphans_flagged": 0
+        },
+        "facilities": {
+          "input_rows": 839,
+          "output_rows": 839,
+          "valid_rows": 839,
+          "duplicates_flagged": 0,
+          "orphans_flagged": 0
+        }
+      }
+    },
+    "dimensions": {
+      "dim_date": 4018,
+      "dim_geography": 6,
+      "dim_facility": 839,
+      "dim_provider": 2669,
+      "dim_patient": 912
+    },
+    "facts": {
+      "fact_appointment": 702,
+      "fact_encounter": 415,
+      "fact_referral": 154,
+      "fact_prescription": 122,
+      "fact_vital": 124
+    },
+    "reconcile": {
+      "all_pass": false,
+      "encounter_patient_orphans": 0,
+      "report_csv": "C:\\Users\\HP\\Documents\\SIH_PROJECT_2026\\data-engineering\\reports\\reconciliation_report.csv",
+      "summary": [
+        {
+          "Entity": "Patients",
+          "Source_Postgres": 912,
+          "Raw_Parquet": 912,
+          "Staging_Parquet": 912,
+          "Analytics_Rows": 912,
+          "Variance": 0,
+          "Status": "RECONCILED"
+        },
+        {
+          "Entity": "Facilities",
+          "Source_Postgres": 922,
+          "Raw_Parquet": 839,
+          "Staging_Parquet": 839,
+          "Analytics_Rows": 839,
+          "Variance": 83,
+          "Status": "VARIANCE_EXPLAINED"
+        },
+        {
+          "Entity": "Appointments",
+          "Source_Postgres": 702,
+          "Raw_Parquet": 702,
+          "Staging_Parquet": 702,
+          "Analytics_Rows": 702,
+          "Variance": 0,
+          "Status": "RECONCILED"
+        },
+        {
+          "Entity": "Encounters",
+          "Source_Postgres": 415,
+          "Raw_Parquet": 415,
+          "Staging_Parquet": 415,
+          "Analytics_Rows": 415,
+          "Variance": 0,
+          "Status": "RECONCILED"
+        },
+        {
+          "Entity": "Referrals",
+          "Source_Postgres": 154,
+          "Raw_Parquet": 154,
+          "Staging_Parquet": 154,
+          "Analytics_Rows": 154,
+          "Variance": 0,
+          "Status": "RECONCILED"
+        },
+        {
+          "Entity": "Prescriptions",
+          "Source_Postgres": 122,
+          "Raw_Parquet": 122,
+          "Staging_Parquet": 122,
+          "Analytics_Rows": 122,
+          "Variance": 0,
+          "Status": "RECONCILED"
+        },
+        {
+          "Entity": "Vitals",
+          "Source_Postgres": 124,
+          "Raw_Parquet": 124,
+          "Staging_Parquet": 124,
+          "Analytics_Rows": 124,
+          "Variance": 0,
+          "Status": "RECONCILED"
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

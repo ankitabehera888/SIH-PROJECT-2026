@@ -1,0 +1,159 @@
+{
+  "info": {
+    "_postman_id": "teleconsultation-daily-collection-v1",
+    "name": "Healthcare Platform - Teleconsultation (Phase 10)",
+    "description": "Postman collection for testing Daily.co WebRTC teleconsultations, private rooms, meeting tokens, and authorization.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8000/api/v1", "type": "string" },
+    { "key": "doctorToken", "value": "", "type": "string" },
+    { "key": "patientToken", "value": "", "type": "string" },
+    { "key": "unauthorizedToken", "value": "", "type": "string" },
+    { "key": "facilityId", "value": "", "type": "string" },
+    { "key": "patientId", "value": "", "type": "string" },
+    { "key": "appointmentId", "value": "", "type": "string" },
+    { "key": "consultationId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1. Login Doctor",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"dr.sharma@hospital.org\",\n  \"password\": \"SecurePassword123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "2. Login Patient",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"patient.anita@hospital.org\",\n  \"password\": \"SecurePassword123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "3. Provision Teleconsultation (Daily Private Room)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{doctorToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"consultation_type\": \"VIDEO\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/appointments/{{appointmentId}}/consultation",
+          "host": ["{{baseUrl}}"],
+          "path": ["appointments", "{{appointmentId}}", "consultation"]
+        }
+      }
+    },
+    {
+      "name": "4. Get Teleconsultation Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{patientToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/consultations/{{consultationId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["consultations", "{{consultationId}}"]
+        }
+      }
+    },
+    {
+      "name": "5. Patient Join (Get Daily Meeting Token)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{patientToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/consultations/{{consultationId}}/join",
+          "host": ["{{baseUrl}}"],
+          "path": ["consultations", "{{consultationId}}", "join"]
+        }
+      }
+    },
+    {
+      "name": "6. Provider Join (Get Owner Meeting Token)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{doctorToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/consultations/{{consultationId}}/join",
+          "host": ["{{baseUrl}}"],
+          "path": ["consultations", "{{consultationId}}", "join"]
+        }
+      }
+    },
+    {
+      "name": "7. Unauthorized Patient Join (Expected 403 Forbidden)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{unauthorizedToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/consultations/{{consultationId}}/join",
+          "host": ["{{baseUrl}}"],
+          "path": ["consultations", "{{consultationId}}", "join"]
+        }
+      }
+    },
+    {
+      "name": "8. List Consultation Participants",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{doctorToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/consultations/{{consultationId}}/participants",
+          "host": ["{{baseUrl}}"],
+          "path": ["consultations", "{{consultationId}}", "participants"]
+        }
+      }
+    },
+    {
+      "name": "9. End Consultation",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{doctorToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/consultations/{{consultationId}}/end",
+          "host": ["{{baseUrl}}"],
+          "path": ["consultations", "{{consultationId}}", "end"]
+        }
+      }
+    }
+  ]
+}

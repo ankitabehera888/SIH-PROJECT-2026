@@ -1,0 +1,7 @@
+Vital_Sign,Expected_Range,Total_Measurements,Valid_Count,Invalid_Count,Validity_Percentage,Status
+Systolic Blood Pressure,60 - 260 mmHg,112,112,0,100.0,PASS
+Diastolic Blood Pressure,30 - 180 mmHg,112,112,0,100.0,PASS
+Heart Rate,25 - 240 bpm,112,112,0,100.0,PASS
+Body Temperature,30.0 - 45.0 °C,28,28,0,100.0,PASS
+Oxygen Saturation,50.0 - 100.0 %,76,76,0,100.0,PASS
+Respiratory Rate,6 - 60 breaths/min,87,87,0,100.0,PASS

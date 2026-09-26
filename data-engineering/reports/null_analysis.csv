@@ -1,0 +1,316 @@
+Table,Column,Data_Type,Nullable_In_Schema,Is_Primary_Key,Null_Count,Total_Rows,Null_Percentage,Status
+alembic_version,version_num,str,False,True,0,1,0.0,COMPLETE
+appointments,notes,str,True,False,637,637,100.0,SPARSE_OPTIONAL
+appointments,cancelled_at,"datetime64[us, UTC]",True,False,623,637,97.8,SPARSE_OPTIONAL
+appointments,cancelled_by,float64,True,False,623,637,97.8,SPARSE_OPTIONAL
+appointments,cancellation_reason,str,True,False,623,637,97.8,SPARSE_OPTIONAL
+appointments,reason,str,True,False,171,637,26.84,NORMAL_OPTIONAL
+appointments,id,object,False,True,0,637,0.0,COMPLETE
+appointments,patient_id,object,False,False,0,637,0.0,COMPLETE
+appointments,provider_id,int64,False,False,0,637,0.0,COMPLETE
+appointments,facility_id,object,False,False,0,637,0.0,COMPLETE
+appointments,appointment_date,datetime64[s],False,False,0,637,0.0,COMPLETE
+appointments,start_time,object,False,False,0,637,0.0,COMPLETE
+appointments,end_time,object,False,False,0,637,0.0,COMPLETE
+appointments,appointment_type,str,False,False,0,637,0.0,COMPLETE
+appointments,status,str,False,False,0,637,0.0,COMPLETE
+appointments,created_at,"datetime64[us, UTC]",False,False,0,637,0.0,COMPLETE
+appointments,updated_at,"datetime64[us, UTC]",False,False,0,637,0.0,COMPLETE
+appointments,created_by,int64,True,False,0,637,0.0,COMPLETE
+appointments,updated_by,int64,True,False,0,637,0.0,COMPLETE
+consents,expires_at,"datetime64[s, UTC]",True,False,11,11,100.0,SPARSE_OPTIONAL
+consents,revoked_at,"datetime64[us, UTC]",True,False,8,11,72.73,NORMAL_OPTIONAL
+consents,notes,str,True,False,8,11,72.73,NORMAL_OPTIONAL
+consents,id,object,False,True,0,11,0.0,COMPLETE
+consents,patient_id,object,False,False,0,11,0.0,COMPLETE
+consents,consent_artefact_id,str,True,False,0,11,0.0,COMPLETE
+consents,purpose,str,False,False,0,11,0.0,COMPLETE
+consents,scope,str,False,False,0,11,0.0,COMPLETE
+consents,status,str,False,False,0,11,0.0,COMPLETE
+consents,granted_by,int64,True,False,0,11,0.0,COMPLETE
+consents,granted_at,"datetime64[us, UTC]",False,False,0,11,0.0,COMPLETE
+consents,created_at,"datetime64[us, UTC]",False,False,0,11,0.0,COMPLETE
+consents,updated_at,"datetime64[us, UTC]",False,False,0,11,0.0,COMPLETE
+consultation_participants,left_at,"datetime64[us, UTC]",True,False,48,86,55.81,NORMAL_OPTIONAL
+consultation_participants,id,object,False,True,0,86,0.0,COMPLETE
+consultation_participants,consultation_id,object,False,False,0,86,0.0,COMPLETE
+consultation_participants,user_id,int64,False,False,0,86,0.0,COMPLETE
+consultation_participants,role,str,False,False,0,86,0.0,COMPLETE
+consultation_participants,joined_at,"datetime64[us, UTC]",True,False,0,86,0.0,COMPLETE
+consultation_participants,duration_seconds,int64,False,False,0,86,0.0,COMPLETE
+consultation_participants,connection_status,str,False,False,0,86,0.0,COMPLETE
+consultation_participants,reconnect_count,int64,False,False,0,86,0.0,COMPLETE
+consultation_participants,created_at,"datetime64[us, UTC]",False,False,0,86,0.0,COMPLETE
+consultation_participants,updated_at,"datetime64[us, UTC]",False,False,0,86,0.0,COMPLETE
+consultations,encounter_id,object,True,False,115,129,89.15,SPARSE_OPTIONAL
+consultations,ended_at,"datetime64[us, UTC]",True,False,91,129,70.54,NORMAL_OPTIONAL
+consultations,started_at,"datetime64[us, UTC]",True,False,84,129,65.12,NORMAL_OPTIONAL
+consultations,id,object,False,True,0,129,0.0,COMPLETE
+consultations,appointment_id,object,False,False,0,129,0.0,COMPLETE
+consultations,patient_id,object,False,False,0,129,0.0,COMPLETE
+consultations,provider_id,int64,False,False,0,129,0.0,COMPLETE
+consultations,facility_id,object,False,False,0,129,0.0,COMPLETE
+consultations,consultation_type,str,False,False,0,129,0.0,COMPLETE
+consultations,status,str,False,False,0,129,0.0,COMPLETE
+consultations,room_name,str,False,False,0,129,0.0,COMPLETE
+consultations,room_url,str,False,False,0,129,0.0,COMPLETE
+consultations,scheduled_start,"datetime64[us, UTC]",False,False,0,129,0.0,COMPLETE
+consultations,scheduled_end,"datetime64[us, UTC]",True,False,0,129,0.0,COMPLETE
+consultations,created_by,int64,True,False,0,129,0.0,COMPLETE
+consultations,updated_by,int64,True,False,0,129,0.0,COMPLETE
+consultations,created_at,"datetime64[us, UTC]",False,False,0,129,0.0,COMPLETE
+consultations,updated_at,"datetime64[us, UTC]",False,False,0,129,0.0,COMPLETE
+diagnostic_order_items,specimen_collected_at,"datetime64[s, UTC]",True,False,119,119,100.0,SPARSE_OPTIONAL
+diagnostic_order_items,notes,str,True,False,45,119,37.82,NORMAL_OPTIONAL
+diagnostic_order_items,performed_at,"datetime64[us, UTC]",True,False,34,119,28.57,NORMAL_OPTIONAL
+diagnostic_order_items,id,object,False,True,0,119,0.0,COMPLETE
+diagnostic_order_items,diagnostic_order_id,object,False,False,0,119,0.0,COMPLETE
+diagnostic_order_items,diagnostic_test_id,object,False,False,0,119,0.0,COMPLETE
+diagnostic_order_items,status,str,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,cancelled_at,"datetime64[us, UTC]",True,False,111,119,93.28,SPARSE_OPTIONAL
+diagnostic_orders,cancelled_by,float64,True,False,111,119,93.28,SPARSE_OPTIONAL
+diagnostic_orders,cancellation_reason,str,True,False,111,119,93.28,SPARSE_OPTIONAL
+diagnostic_orders,notes,str,True,False,102,119,85.71,SPARSE_OPTIONAL
+diagnostic_orders,id,object,False,True,0,119,0.0,COMPLETE
+diagnostic_orders,patient_id,object,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,encounter_id,object,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,ordering_provider_id,int64,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,facility_id,object,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,status,str,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,priority,str,False,False,0,119,0.0,COMPLETE
+diagnostic_orders,ordered_at,"datetime64[us, UTC]",False,False,0,119,0.0,COMPLETE
+diagnostic_orders,created_at,"datetime64[us, UTC]",False,False,0,119,0.0,COMPLETE
+diagnostic_orders,updated_at,"datetime64[us, UTC]",False,False,0,119,0.0,COMPLETE
+diagnostic_results,updated_by,object,True,False,85,85,100.0,SPARSE_OPTIONAL
+diagnostic_results,unit,str,True,False,64,85,75.29,NORMAL_OPTIONAL
+diagnostic_results,notes,str,True,False,7,85,8.24,NORMAL_OPTIONAL
+diagnostic_results,id,object,False,True,0,85,0.0,COMPLETE
+diagnostic_results,diagnostic_order_item_id,object,False,False,0,85,0.0,COMPLETE
+diagnostic_results,patient_id,object,False,False,0,85,0.0,COMPLETE
+diagnostic_results,result_value,str,False,False,0,85,0.0,COMPLETE
+diagnostic_results,reference_range,str,True,False,0,85,0.0,COMPLETE
+diagnostic_results,abnormal_flag,bool,False,False,0,85,0.0,COMPLETE
+diagnostic_results,result_status,str,False,False,0,85,0.0,COMPLETE
+diagnostic_results,performed_at,"datetime64[us, UTC]",False,False,0,85,0.0,COMPLETE
+diagnostic_results,verified_at,"datetime64[us, UTC]",True,False,0,85,0.0,COMPLETE
+diagnostic_results,verified_by,int64,True,False,0,85,0.0,COMPLETE
+diagnostic_results,created_at,"datetime64[us, UTC]",False,False,0,85,0.0,COMPLETE
+diagnostic_results,created_by,int64,True,False,0,85,0.0,COMPLETE
+diagnostic_results,updated_at,"datetime64[us, UTC]",False,False,0,85,0.0,COMPLETE
+diagnostic_tests,description,str,True,False,86,128,67.19,NORMAL_OPTIONAL
+diagnostic_tests,specimen_type,str,True,False,78,128,60.94,NORMAL_OPTIONAL
+diagnostic_tests,id,object,False,True,0,128,0.0,COMPLETE
+diagnostic_tests,code,str,False,False,0,128,0.0,COMPLETE
+diagnostic_tests,name,str,False,False,0,128,0.0,COMPLETE
+diagnostic_tests,category,str,False,False,0,128,0.0,COMPLETE
+diagnostic_tests,is_active,bool,False,False,0,128,0.0,COMPLETE
+diagnostic_tests,created_at,"datetime64[us, UTC]",False,False,0,128,0.0,COMPLETE
+diagnostic_tests,updated_at,"datetime64[us, UTC]",False,False,0,128,0.0,COMPLETE
+encounters,ended_at,"datetime64[us, UTC]",True,False,350,371,94.34,SPARSE_OPTIONAL
+encounters,clinical_notes,str,True,False,342,371,92.18,SPARSE_OPTIONAL
+encounters,chief_complaint,str,True,False,79,371,21.29,NORMAL_OPTIONAL
+encounters,id,object,False,True,0,371,0.0,COMPLETE
+encounters,patient_id,object,False,False,0,371,0.0,COMPLETE
+encounters,appointment_id,object,True,False,0,371,0.0,COMPLETE
+encounters,provider_id,int64,False,False,0,371,0.0,COMPLETE
+encounters,facility_id,object,False,False,0,371,0.0,COMPLETE
+encounters,encounter_type,str,False,False,0,371,0.0,COMPLETE
+encounters,status,str,False,False,0,371,0.0,COMPLETE
+encounters,started_at,"datetime64[us, UTC]",False,False,0,371,0.0,COMPLETE
+encounters,created_at,"datetime64[us, UTC]",False,False,0,371,0.0,COMPLETE
+encounters,updated_at,"datetime64[us, UTC]",False,False,0,371,0.0,COMPLETE
+encounters,created_by,int64,True,False,0,371,0.0,COMPLETE
+encounters,updated_by,int64,True,False,0,371,0.0,COMPLETE
+facilities,phone,str,True,False,622,839,74.14,NORMAL_OPTIONAL
+facilities,address,str,True,False,621,839,74.02,NORMAL_OPTIONAL
+facilities,id,object,False,True,0,839,0.0,COMPLETE
+facilities,name,str,False,False,0,839,0.0,COMPLETE
+facilities,facility_code,str,False,False,0,839,0.0,COMPLETE
+facilities,facility_type,str,False,False,0,839,0.0,COMPLETE
+facilities,is_active,bool,False,False,0,839,0.0,COMPLETE
+facilities,created_at,"datetime64[us, UTC]",False,False,0,839,0.0,COMPLETE
+facilities,updated_at,"datetime64[us, UTC]",False,False,0,839,0.0,COMPLETE
+interoperability_audits,details,str,True,False,38,64,59.38,NORMAL_OPTIONAL
+interoperability_audits,purpose,str,True,False,27,64,42.19,NORMAL_OPTIONAL
+interoperability_audits,id,object,False,True,0,64,0.0,COMPLETE
+interoperability_audits,patient_id,object,True,False,0,64,0.0,COMPLETE
+interoperability_audits,user_id,int64,True,False,0,64,0.0,COMPLETE
+interoperability_audits,action,str,False,False,0,64,0.0,COMPLETE
+interoperability_audits,resource_type,str,False,False,0,64,0.0,COMPLETE
+interoperability_audits,resource_id,str,True,False,0,64,0.0,COMPLETE
+interoperability_audits,status,str,False,False,0,64,0.0,COMPLETE
+interoperability_audits,timestamp,"datetime64[us, UTC]",False,False,0,64,0.0,COMPLETE
+medications,id,object,False,True,0,135,0.0,COMPLETE
+medications,name,str,False,False,0,135,0.0,COMPLETE
+medications,generic_name,str,False,False,0,135,0.0,COMPLETE
+medications,strength,str,False,False,0,135,0.0,COMPLETE
+medications,dosage_form,str,False,False,0,135,0.0,COMPLETE
+medications,route,str,False,False,0,135,0.0,COMPLETE
+medications,unit,str,False,False,0,135,0.0,COMPLETE
+medications,is_active,bool,False,False,0,135,0.0,COMPLETE
+medications,created_at,"datetime64[us, UTC]",False,False,0,135,0.0,COMPLETE
+medications,updated_at,"datetime64[us, UTC]",False,False,0,135,0.0,COMPLETE
+notification_preferences,preferred_email,str,True,False,88,90,97.78,SPARSE_OPTIONAL
+notification_preferences,preferred_phone,str,True,False,81,90,90.0,SPARSE_OPTIONAL
+notification_preferences,id,object,False,True,0,90,0.0,COMPLETE
+notification_preferences,user_id,int64,False,False,0,90,0.0,COMPLETE
+notification_preferences,email_enabled,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,sms_enabled,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,in_app_enabled,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,appointment_reminders,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,referral_notifications,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,diagnostic_notifications,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,prescription_notifications,bool,False,False,0,90,0.0,COMPLETE
+notification_preferences,created_at,"datetime64[us, UTC]",False,False,0,90,0.0,COMPLETE
+notification_preferences,updated_at,"datetime64[us, UTC]",False,False,0,90,0.0,COMPLETE
+notifications,scheduled_at,"datetime64[s, UTC]",True,False,117,117,100.0,SPARSE_OPTIONAL
+notifications,failed_at,"datetime64[us, UTC]",True,False,111,117,94.87,SPARSE_OPTIONAL
+notifications,error_message,str,True,False,111,117,94.87,SPARSE_OPTIONAL
+notifications,read_at,"datetime64[us, UTC]",True,False,109,117,93.16,SPARSE_OPTIONAL
+notifications,sent_at,"datetime64[us, UTC]",True,False,67,117,57.26,NORMAL_OPTIONAL
+notifications,provider_message_id,str,True,False,67,117,57.26,NORMAL_OPTIONAL
+notifications,patient_id,object,True,False,45,117,38.46,NORMAL_OPTIONAL
+notifications,related_entity_type,str,True,False,45,117,38.46,NORMAL_OPTIONAL
+notifications,related_entity_id,object,True,False,45,117,38.46,NORMAL_OPTIONAL
+notifications,idempotency_key,str,True,False,45,117,38.46,NORMAL_OPTIONAL
+notifications,id,object,False,True,0,117,0.0,COMPLETE
+notifications,user_id,int64,False,False,0,117,0.0,COMPLETE
+notifications,notification_type,str,False,False,0,117,0.0,COMPLETE
+notifications,channel,str,False,False,0,117,0.0,COMPLETE
+notifications,subject,str,False,False,0,117,0.0,COMPLETE
+notifications,message,str,False,False,0,117,0.0,COMPLETE
+notifications,status,str,False,False,0,117,0.0,COMPLETE
+notifications,is_read,bool,False,False,0,117,0.0,COMPLETE
+notifications,retry_count,int64,False,False,0,117,0.0,COMPLETE
+notifications,created_at,"datetime64[us, UTC]",False,False,0,117,0.0,COMPLETE
+notifications,updated_at,"datetime64[us, UTC]",False,False,0,117,0.0,COMPLETE
+patient_identifiers,verified_at,"datetime64[s, UTC]",True,False,15,15,100.0,SPARSE_OPTIONAL
+patient_identifiers,id,object,False,True,0,15,0.0,COMPLETE
+patient_identifiers,patient_id,object,False,False,0,15,0.0,COMPLETE
+patient_identifiers,system,str,False,False,0,15,0.0,COMPLETE
+patient_identifiers,value,str,False,False,0,15,0.0,COMPLETE
+patient_identifiers,identifier_type,str,False,False,0,15,0.0,COMPLETE
+patient_identifiers,status,str,False,False,0,15,0.0,COMPLETE
+patient_identifiers,created_at,"datetime64[us, UTC]",False,False,0,15,0.0,COMPLETE
+patient_identifiers,updated_at,"datetime64[us, UTC]",False,False,0,15,0.0,COMPLETE
+patients,middle_name,str,True,False,816,833,97.96,SPARSE_OPTIONAL
+patients,emergency_contact_name,str,True,False,816,833,97.96,SPARSE_OPTIONAL
+patients,emergency_contact_phone,str,True,False,816,833,97.96,SPARSE_OPTIONAL
+patients,email,str,True,False,800,833,96.04,SPARSE_OPTIONAL
+patients,address,str,True,False,782,833,93.88,SPARSE_OPTIONAL
+patients,phone,str,True,False,642,833,77.07,NORMAL_OPTIONAL
+patients,user_id,float64,True,False,622,833,74.67,NORMAL_OPTIONAL
+patients,created_by,float64,True,False,2,833,0.24,NORMAL_OPTIONAL
+patients,updated_by,float64,True,False,2,833,0.24,NORMAL_OPTIONAL
+patients,id,object,False,True,0,833,0.0,COMPLETE
+patients,patient_number,str,False,False,0,833,0.0,COMPLETE
+patients,first_name,str,False,False,0,833,0.0,COMPLETE
+patients,last_name,str,False,False,0,833,0.0,COMPLETE
+patients,date_of_birth,datetime64[s],False,False,0,833,0.0,COMPLETE
+patients,gender,str,False,False,0,833,0.0,COMPLETE
+patients,is_active,bool,False,False,0,833,0.0,COMPLETE
+patients,created_at,"datetime64[us, UTC]",False,False,0,833,0.0,COMPLETE
+patients,updated_at,"datetime64[us, UTC]",False,False,0,833,0.0,COMPLETE
+prescription_items,notes,str,True,False,102,110,92.73,SPARSE_OPTIONAL
+prescription_items,instructions,str,True,False,24,110,21.82,NORMAL_OPTIONAL
+prescription_items,id,object,False,True,0,110,0.0,COMPLETE
+prescription_items,prescription_id,object,False,False,0,110,0.0,COMPLETE
+prescription_items,medication_id,object,False,False,0,110,0.0,COMPLETE
+prescription_items,dosage,str,False,False,0,110,0.0,COMPLETE
+prescription_items,frequency,str,False,False,0,110,0.0,COMPLETE
+prescription_items,duration,int64,False,False,0,110,0.0,COMPLETE
+prescription_items,duration_unit,str,False,False,0,110,0.0,COMPLETE
+prescription_items,route,str,False,False,0,110,0.0,COMPLETE
+prescription_items,quantity,int64,False,False,0,110,0.0,COMPLETE
+prescriptions,cancelled_at,"datetime64[us, UTC]",True,False,102,110,92.73,SPARSE_OPTIONAL
+prescriptions,cancelled_by,float64,True,False,102,110,92.73,SPARSE_OPTIONAL
+prescriptions,cancellation_reason,str,True,False,102,110,92.73,SPARSE_OPTIONAL
+prescriptions,notes,str,True,False,36,110,32.73,NORMAL_OPTIONAL
+prescriptions,id,object,False,True,0,110,0.0,COMPLETE
+prescriptions,patient_id,object,False,False,0,110,0.0,COMPLETE
+prescriptions,encounter_id,object,False,False,0,110,0.0,COMPLETE
+prescriptions,prescriber_id,int64,False,False,0,110,0.0,COMPLETE
+prescriptions,facility_id,object,False,False,0,110,0.0,COMPLETE
+prescriptions,status,str,False,False,0,110,0.0,COMPLETE
+prescriptions,prescribed_at,"datetime64[us, UTC]",False,False,0,110,0.0,COMPLETE
+prescriptions,created_at,"datetime64[us, UTC]",False,False,0,110,0.0,COMPLETE
+prescriptions,created_by,int64,True,False,0,110,0.0,COMPLETE
+prescriptions,issued_at,"datetime64[us, UTC]",True,False,0,110,0.0,COMPLETE
+prescriptions,issued_by,int64,True,False,0,110,0.0,COMPLETE
+prescriptions,updated_at,"datetime64[us, UTC]",False,False,0,110,0.0,COMPLETE
+prescriptions,updated_by,int64,True,False,0,110,0.0,COMPLETE
+queue_entries,completed_at,"datetime64[us, UTC]",True,False,63,78,80.77,SPARSE_OPTIONAL
+queue_entries,consultation_started_at,"datetime64[us, UTC]",True,False,61,78,78.21,NORMAL_OPTIONAL
+queue_entries,called_at,"datetime64[us, UTC]",True,False,48,78,61.54,NORMAL_OPTIONAL
+queue_entries,id,object,False,True,0,78,0.0,COMPLETE
+queue_entries,appointment_id,object,False,False,0,78,0.0,COMPLETE
+queue_entries,patient_id,object,False,False,0,78,0.0,COMPLETE
+queue_entries,facility_id,object,False,False,0,78,0.0,COMPLETE
+queue_entries,queue_date,datetime64[s],False,False,0,78,0.0,COMPLETE
+queue_entries,queue_number,str,False,False,0,78,0.0,COMPLETE
+queue_entries,priority,str,False,False,0,78,0.0,COMPLETE
+queue_entries,status,str,False,False,0,78,0.0,COMPLETE
+queue_entries,checked_in_at,"datetime64[us, UTC]",False,False,0,78,0.0,COMPLETE
+queue_entries,created_at,"datetime64[us, UTC]",False,False,0,78,0.0,COMPLETE
+referrals,receiving_provider_id,object,True,False,139,139,100.0,SPARSE_OPTIONAL
+referrals,requested_date,datetime64[s],True,False,139,139,100.0,SPARSE_OPTIONAL
+referrals,cancelled_at,"datetime64[us, UTC]",True,False,130,139,93.53,SPARSE_OPTIONAL
+referrals,cancelled_by,float64,True,False,130,139,93.53,SPARSE_OPTIONAL
+referrals,cancellation_reason,str,True,False,130,139,93.53,SPARSE_OPTIONAL
+referrals,accepted_at,"datetime64[us, UTC]",True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,accepted_by,float64,True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,scheduled_at,"datetime64[us, UTC]",True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,scheduled_by,float64,True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,scheduled_date,datetime64[s],True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,scheduled_time,object,True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,completed_at,"datetime64[us, UTC]",True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,completed_by,float64,True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,outcome_status,str,True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,outcome_notes,str,True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,follow_up_date,datetime64[s],True,False,129,139,92.81,SPARSE_OPTIONAL
+referrals,rejected_at,"datetime64[us, UTC]",True,False,121,139,87.05,SPARSE_OPTIONAL
+referrals,rejected_by,float64,True,False,121,139,87.05,SPARSE_OPTIONAL
+referrals,rejection_reason,str,True,False,121,139,87.05,SPARSE_OPTIONAL
+referrals,clinical_summary,str,True,False,118,139,84.89,SPARSE_OPTIONAL
+referrals,requested_specialty,str,True,False,65,139,46.76,NORMAL_OPTIONAL
+referrals,id,object,False,True,0,139,0.0,COMPLETE
+referrals,patient_id,object,False,False,0,139,0.0,COMPLETE
+referrals,encounter_id,object,False,False,0,139,0.0,COMPLETE
+referrals,referring_facility_id,object,False,False,0,139,0.0,COMPLETE
+referrals,referring_provider_id,int64,False,False,0,139,0.0,COMPLETE
+referrals,receiving_facility_id,object,False,False,0,139,0.0,COMPLETE
+referrals,referral_type,str,False,False,0,139,0.0,COMPLETE
+referrals,priority,str,False,False,0,139,0.0,COMPLETE
+referrals,status,str,False,False,0,139,0.0,COMPLETE
+referrals,reason,str,False,False,0,139,0.0,COMPLETE
+referrals,created_at,"datetime64[us, UTC]",False,False,0,139,0.0,COMPLETE
+referrals,created_by,int64,True,False,0,139,0.0,COMPLETE
+referrals,follow_up_required,bool,False,False,0,139,0.0,COMPLETE
+referrals,updated_at,"datetime64[us, UTC]",False,False,0,139,0.0,COMPLETE
+referrals,updated_by,int64,True,False,0,139,0.0,COMPLETE
+system_checks,id,int64,False,True,0,22,0.0,COMPLETE
+system_checks,check_name,str,False,False,0,22,0.0,COMPLETE
+system_checks,status,str,False,False,0,22,0.0,COMPLETE
+system_checks,created_at,"datetime64[us, UTC]",False,False,0,22,0.0,COMPLETE
+users,facility_id,object,True,False,2394,2394,100.0,SPARSE_OPTIONAL
+users,id,int64,False,True,0,2394,0.0,COMPLETE
+users,email,str,False,False,0,2394,0.0,COMPLETE
+users,password_hash,str,False,False,0,2394,0.0,COMPLETE
+users,role,str,False,False,0,2394,0.0,COMPLETE
+users,is_active,bool,False,False,0,2394,0.0,COMPLETE
+users,created_at,"datetime64[us, UTC]",False,False,0,2394,0.0,COMPLETE
+users,updated_at,"datetime64[us, UTC]",False,False,0,2394,0.0,COMPLETE
+vitals,notes,str,True,False,101,112,90.18,SPARSE_OPTIONAL
+vitals,weight,float64,True,False,89,112,79.46,NORMAL_OPTIONAL
+vitals,height,float64,True,False,89,112,79.46,NORMAL_OPTIONAL
+vitals,temperature,float64,True,False,84,112,75.0,NORMAL_OPTIONAL
+vitals,spo2,float64,True,False,36,112,32.14,NORMAL_OPTIONAL
+vitals,respiratory_rate,float64,True,False,25,112,22.32,NORMAL_OPTIONAL
+vitals,id,object,False,True,0,112,0.0,COMPLETE
+vitals,encounter_id,object,False,False,0,112,0.0,COMPLETE
+vitals,patient_id,object,False,False,0,112,0.0,COMPLETE
+vitals,recorded_by,int64,True,False,0,112,0.0,COMPLETE
+vitals,recorded_at,"datetime64[us, UTC]",False,False,0,112,0.0,COMPLETE
+vitals,heart_rate,int64,True,False,0,112,0.0,COMPLETE
+vitals,systolic_bp,int64,True,False,0,112,0.0,COMPLETE
+vitals,diastolic_bp,int64,True,False,0,112,0.0,COMPLETE

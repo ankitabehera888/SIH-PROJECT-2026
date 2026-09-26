@@ -1,0 +1,25 @@
+Relationship,Child_Table,Foreign_Key,Parent_Table,Total_Child_Records,Invalid_Orphan_Records,Status
+vitals -> encounters,vitals,encounter_id,encounters,112,0,PASS
+vitals -> patients,vitals,patient_id,patients,112,0,PASS
+encounters -> patients,encounters,patient_id,patients,371,0,PASS
+encounters -> facilities,encounters,facility_id,facilities,371,0,PASS
+encounters -> appointments,encounters,appointment_id,appointments,371,0,PASS
+appointments -> patients,appointments,patient_id,patients,637,0,PASS
+appointments -> facilities,appointments,facility_id,facilities,637,0,PASS
+prescriptions -> encounters,prescriptions,encounter_id,encounters,110,0,PASS
+prescriptions -> patients,prescriptions,patient_id,patients,110,0,PASS
+prescription_items -> prescriptions,prescription_items,prescription_id,prescriptions,110,0,PASS
+prescription_items -> medications,prescription_items,medication_id,medications,110,0,PASS
+diagnostic_orders -> encounters,diagnostic_orders,encounter_id,encounters,119,0,PASS
+diagnostic_orders -> patients,diagnostic_orders,patient_id,patients,119,0,PASS
+diagnostic_order_items -> diagnostic_orders,diagnostic_order_items,diagnostic_order_id,diagnostic_orders,119,0,PASS
+diagnostic_order_items -> diagnostic_tests,diagnostic_order_items,diagnostic_test_id,diagnostic_tests,119,0,PASS
+diagnostic_results -> diagnostic_order_items,diagnostic_results,diagnostic_order_item_id,diagnostic_order_items,85,0,PASS
+referrals -> encounters,referrals,encounter_id,encounters,139,0,PASS
+referrals -> patients,referrals,patient_id,patients,139,0,PASS
+consultations -> appointments,consultations,appointment_id,appointments,129,0,PASS
+consultation_participants -> consultations,consultation_participants,consultation_id,consultations,86,0,PASS
+queue_entries -> appointments,queue_entries,appointment_id,appointments,78,0,PASS
+patient_identifiers -> patients,patient_identifiers,patient_id,patients,15,0,PASS
+consents -> patients,consents,patient_id,patients,11,0,PASS
+notifications -> patients,notifications,patient_id,patients,117,0,PASS

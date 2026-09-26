@@ -1,0 +1,31 @@
+check_code,check_type,execution_time,observed_value,expected_value,threshold_value,status,severity,message,pipeline_run_id
+dim_patient_key_completeness,COMPLETENESS,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Null rate for dim_patient_key is 0.0000 (0 nulls / 912 rows),20260901_232519
+fact_encounter_key_completeness,COMPLETENESS,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Null rate for fact_encounter_key is 0.0000 (0 nulls / 415 rows),20260901_232519
+fact_appointment_key_completeness,COMPLETENESS,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Null rate for fact_appointment_key is 0.0000 (0 nulls / 702 rows),20260901_232519
+fact_referral_key_completeness,COMPLETENESS,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Null rate for fact_referral_key is 0.0000 (0 nulls / 154 rows),20260901_232519
+orphan_vitals_check,INTEGRITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 orphan records for relationship 'orphan_vitals',20260901_232519
+orphan_prescriptions_check,INTEGRITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 orphan records for relationship 'orphan_prescriptions',20260901_232519
+orphan_encounters_patient_check,INTEGRITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 orphan records for relationship 'orphan_encounters_patient',20260901_232519
+orphan_appointments_patient_check,INTEGRITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 orphan records for relationship 'orphan_appointments_patient',20260901_232519
+orphan_referrals_patient_check,INTEGRITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 orphan records for relationship 'orphan_referrals_patient',20260901_232519
+duplicate_patients_check,DUPLICATE,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 duplicate natural keys for 'duplicate_patients',20260901_232519
+duplicate_encounters_check,DUPLICATE,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 duplicate natural keys for 'duplicate_encounters',20260901_232519
+duplicate_appointments_check,DUPLICATE,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 duplicate natural keys for 'duplicate_appointments',20260901_232519
+duplicate_referrals_check,DUPLICATE,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Found 0 duplicate natural keys for 'duplicate_referrals',20260901_232519
+biometric_invalid_systolic_bp_check,VALIDITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,WARNING,Found 0 records exceeding clinical biometric boundaries for 'invalid_systolic_bp',20260901_232519
+biometric_invalid_diastolic_bp_check,VALIDITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,WARNING,Found 0 records exceeding clinical biometric boundaries for 'invalid_diastolic_bp',20260901_232519
+biometric_invalid_heart_rate_check,VALIDITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,WARNING,Found 0 records exceeding clinical biometric boundaries for 'invalid_heart_rate',20260901_232519
+biometric_invalid_spo2_check,VALIDITY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,WARNING,Found 0 records exceeding clinical biometric boundaries for 'invalid_spo2',20260901_232519
+fact_encounter_freshness_check,FRESHNESS,2026-09-01 23:25:19,23.4,0.0,48.0,PASS,WARNING,Freshness for 'fact_encounter' is 23.4 hours (threshold: 48.0h),20260901_232519
+fact_appointment_freshness_check,FRESHNESS,2026-09-01 23:25:19,23.4,0.0,48.0,PASS,WARNING,Freshness for 'fact_appointment' is 23.4 hours (threshold: 48.0h),20260901_232519
+fact_referral_freshness_check,FRESHNESS,2026-09-01 23:25:19,23.4,0.0,48.0,PASS,WARNING,Freshness for 'fact_referral' is 23.4 hours (threshold: 48.0h),20260901_232519
+dim_patient_volume_check,VOLUME,2026-09-01 23:25:19,912.0,1.0,0.0,PASS,WARNING,Table 'dim_patient' volume is 912 rows,20260901_232519
+fact_encounter_volume_check,VOLUME,2026-09-01 23:25:19,415.0,1.0,0.0,PASS,WARNING,Table 'fact_encounter' volume is 415 rows,20260901_232519
+fact_appointment_volume_check,VOLUME,2026-09-01 23:25:19,702.0,1.0,0.0,PASS,WARNING,Table 'fact_appointment' volume is 702 rows,20260901_232519
+fact_referral_volume_check,VOLUME,2026-09-01 23:25:19,154.0,1.0,0.0,PASS,WARNING,Table 'fact_referral' volume is 154 rows,20260901_232519
+fact_vital_volume_check,VOLUME,2026-09-01 23:25:19,124.0,1.0,0.0,PASS,WARNING,Table 'fact_vital' volume is 124 rows,20260901_232519
+dim_patient_schema_drift_check,SCHEMA,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Table 'dim_patient' matches expected column schema,20260901_232519
+fact_encounter_schema_drift_check,SCHEMA,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Table 'fact_encounter' matches expected column schema,20260901_232519
+fact_appointment_schema_drift_check,SCHEMA,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Table 'fact_appointment' matches expected column schema,20260901_232519
+fact_referral_schema_drift_check,SCHEMA,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,CRITICAL,Table 'fact_referral' matches expected column schema,20260901_232519
+kpi_boundary_anomaly_check,ANOMALY,2026-09-01 23:25:19,0.0,0.0,0.0,PASS,WARNING,All calculated KPIs conform to normal bounds,20260901_232519

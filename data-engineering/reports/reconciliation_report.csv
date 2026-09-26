@@ -1,0 +1,8 @@
+Entity,Source_Postgres,Raw_Parquet,Staging_Parquet,Analytics_Rows,Variance,Status
+Patients,912,912,912,912,0,RECONCILED
+Facilities,922,922,922,922,0,RECONCILED
+Appointments,702,702,702,702,0,RECONCILED
+Encounters,415,415,415,415,0,RECONCILED
+Referrals,154,154,154,154,0,RECONCILED
+Prescriptions,122,122,122,122,0,RECONCILED
+Vitals,124,124,124,124,0,RECONCILED

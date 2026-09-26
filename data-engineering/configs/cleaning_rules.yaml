@@ -1,0 +1,172 @@
+# Cleaning, Normalization & Standardization Rules
+# Healthcare Platform — Staging Layer
+
+version: "1.0"
+
+# Canonical status mappings (lowercased, mapped to standardized vocabularies)
+code_mappings:
+  gender:
+    male: "male"
+    m: "male"
+    female: "female"
+    f: "female"
+    other: "other"
+    transgender: "other"
+    unknown: "unknown"
+
+  appointment_status:
+    booked: "booked"
+    scheduled: "booked"
+    confirmed: "booked"
+    checked_in: "checked_in"
+    waiting: "checked_in"
+    in_consultation: "in_consultation"
+    consulting: "in_consultation"
+    completed: "completed"
+    done: "completed"
+    cancelled: "cancelled"
+    no_show: "cancelled"
+
+  encounter_status:
+    in_progress: "in_progress"
+    active: "in_progress"
+    started: "in_progress"
+    completed: "completed"
+    done: "completed"
+    closed: "completed"
+    cancelled: "cancelled"
+
+  referral_status:
+    pending: "pending"
+    draft: "pending"
+    accepted: "accepted"
+    scheduled: "scheduled"
+    in_consultation: "in_consultation"
+    completed: "completed"
+    rejected: "rejected"
+    cancelled: "cancelled"
+
+  prescription_status:
+    active: "active"
+    issued: "active"
+    completed: "completed"
+    dispensed: "completed"
+    cancelled: "cancelled"
+
+  diagnostic_order_status:
+    ordered: "ordered"
+    in_progress: "in_progress"
+    specimen_collected: "in_progress"
+    completed: "completed"
+    cancelled: "cancelled"
+
+  diagnostic_result_status:
+    preliminary: "preliminary"
+    draft: "preliminary"
+    final: "final"
+    verified: "final"
+    amended: "amended"
+    corrected: "amended"
+    cancelled: "cancelled"
+
+# Vital signs physiological plausibility ranges
+vital_bounds:
+  systolic_bp:
+    min: 60
+    max: 260
+    unit: "mmHg"
+  diastolic_bp:
+    min: 30
+    max: 180
+    unit: "mmHg"
+  heart_rate:
+    min: 25
+    max: 240
+    unit: "bpm"
+  temperature:
+    min: 30.0
+    max: 45.0
+    unit: "°C"
+  spo2:
+    min: 50.0
+    max: 100.0
+    unit: "%"
+  respiratory_rate:
+    min: 6
+    max: 60
+    unit: "breaths/min"
+
+# Table-specific transformation rules
+tables:
+  patients:
+    trim_string_columns: ["first_name", "middle_name", "last_name", "patient_number", "address"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: []
+    normalize_phone: true
+    phone_column: "phone"
+    normalize_email: true
+    email_column: "email"
+    normalize_code_columns:
+      gender: "gender"
+    timestamp_columns: ["created_at", "updated_at"]
+
+  appointments:
+    trim_string_columns: ["reason", "notes", "cancellation_reason"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["reason", "notes"]
+    normalize_code_columns:
+      status: "appointment_status"
+    timestamp_columns: ["created_at", "updated_at", "cancelled_at"]
+
+  encounters:
+    trim_string_columns: ["chief_complaint", "clinical_notes"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["chief_complaint", "clinical_notes"]
+    normalize_code_columns:
+      status: "encounter_status"
+    timestamp_columns: ["started_at", "ended_at", "created_at", "updated_at"]
+
+  vitals:
+    trim_string_columns: ["notes"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["notes"]
+    validate_vital_ranges: true
+    timestamp_columns: ["recorded_at"]
+
+  prescriptions:
+    trim_string_columns: ["notes", "cancellation_reason"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["notes"]
+    normalize_code_columns:
+      status: "prescription_status"
+    timestamp_columns: ["prescribed_at", "created_at", "updated_at", "cancelled_at"]
+
+  referrals:
+    trim_string_columns: ["reason", "clinical_summary", "rejection_reason", "cancellation_reason"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["reason", "clinical_summary"]
+    normalize_code_columns:
+      status: "referral_status"
+    timestamp_columns: ["created_at", "updated_at", "accepted_at", "scheduled_at", "completed_at", "rejected_at", "cancelled_at"]
+
+  facilities:
+    trim_string_columns: ["name", "facility_code", "address", "phone", "email"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: []
+    timestamp_columns: ["created_at", "updated_at"]
+
+  diagnostic_orders:
+    trim_string_columns: ["clinical_notes", "cancellation_reason"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["clinical_notes"]
+    normalize_code_columns:
+      status: "diagnostic_order_status"
+    timestamp_columns: ["ordered_at", "created_at", "updated_at", "cancelled_at"]
+
+  diagnostic_results:
+    trim_string_columns: ["result_value", "unit", "reference_range", "notes"]
+    normalize_case_columns: {}
+    preserve_narrative_columns: ["notes"]
+    normalize_code_columns:
+      result_status: "diagnostic_result_status"
+    timestamp_columns: ["verified_at", "created_at", "updated_at"]

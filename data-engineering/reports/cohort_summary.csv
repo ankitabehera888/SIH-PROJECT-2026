@@ -1,0 +1,7 @@
+Cohort,Version,Patients,Active_Criteria,Generated_At
+Diabetes,v1.0,0,Documented diabetes diagnosis/complaint OR anti-diabetic prescription,2026-09-01 23:23:22
+Hypertension,v1.0,81,Documented hypertension diagnosis OR elevated BP (SBP >= 140 or DBP >= 90),2026-09-01 23:23:22
+High Risk,v1.0,120,Weighted composite clinical risk score >= 30.0,2026-09-01 23:23:22
+Missed Appointments,v1.0,15,"Appointment status in ('cancelled', 'no_show') or is_cancelled = TRUE",2026-09-01 23:23:22
+Pending Referrals,v1.0,143,Referral records with is_completed = FALSE,2026-09-01 23:23:22
+Chronic Followup,v1.0,154,Documented chronic condition and time since last visit >= 180 days,2026-09-01 23:23:22

@@ -1,0 +1,1679 @@
+{
+  "run_id": "extract_2026-09-01_232154",
+  "source": "healthcare_dev",
+  "generated_at": "2026-09-01T23:22:02.655158+00:00",
+  "total_tables": 24,
+  "total_rows_extracted": 7514,
+  "reconciliation_all_pass": true,
+  "status": "success",
+  "tables": [
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "alembic_version",
+      "extraction_timestamp": "2026-09-01T23:21:55.100975+00:00",
+      "source_row_count": 1,
+      "extracted_row_count": 1,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 1,
+      "columns": [
+        {
+          "name": "version_num",
+          "dtype": "str"
+        }
+      ],
+      "schema_hash": "f0f0ecf2fea07e51e13ad69e05d06525",
+      "file_path": "data/raw/alembic_version/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 1219,
+      "sha256": "1392185a95d0be54a513924768ee0cc695640f4ea257658f79cd79ab8f3b38b9",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "appointments",
+      "extraction_timestamp": "2026-09-01T23:21:55.446591+00:00",
+      "source_row_count": 702,
+      "extracted_row_count": 702,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 18,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "provider_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "appointment_date",
+          "dtype": "datetime64[s]"
+        },
+        {
+          "name": "start_time",
+          "dtype": "object"
+        },
+        {
+          "name": "end_time",
+          "dtype": "object"
+        },
+        {
+          "name": "appointment_type",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "reason",
+          "dtype": "str"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        },
+        {
+          "name": "cancelled_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "cancelled_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "cancellation_reason",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "int64"
+        }
+      ],
+      "schema_hash": "358d6d04444f58a689548ab3b8cbdf44",
+      "file_path": "data/raw/appointments/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 71828,
+      "sha256": "e1e259e983eafc073d2ca49bdde5a5dcffb061070cc1ac3175befedb9d5dcf3e",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "consents",
+      "extraction_timestamp": "2026-09-01T23:21:55.723824+00:00",
+      "source_row_count": 12,
+      "extracted_row_count": 12,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 13,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "consent_artefact_id",
+          "dtype": "str"
+        },
+        {
+          "name": "purpose",
+          "dtype": "str"
+        },
+        {
+          "name": "scope",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "granted_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "granted_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "expires_at",
+          "dtype": "datetime64[s, UTC]"
+        },
+        {
+          "name": "revoked_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "0923485790b6d5427839996346a7d543",
+      "file_path": "data/raw/consents/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 9874,
+      "sha256": "c5118e9822ee336082c57aa53b013610474387471d1c5abf272aca18b0b5d08a",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "consultation_participants",
+      "extraction_timestamp": "2026-09-01T23:21:56.149932+00:00",
+      "source_row_count": 97,
+      "extracted_row_count": 97,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 11,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "consultation_id",
+          "dtype": "object"
+        },
+        {
+          "name": "user_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "role",
+          "dtype": "str"
+        },
+        {
+          "name": "joined_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "left_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "duration_seconds",
+          "dtype": "int64"
+        },
+        {
+          "name": "connection_status",
+          "dtype": "str"
+        },
+        {
+          "name": "reconnect_count",
+          "dtype": "int64"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "dd40f938d1aedd0c5110b61c16c50965",
+      "file_path": "data/raw/consultation_participants/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 13639,
+      "sha256": "764bfea37ae7bb205b936e662eacaec79fc4cdf2ab738acc78e02730731f6259",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "consultations",
+      "extraction_timestamp": "2026-09-01T23:21:56.585317+00:00",
+      "source_row_count": 143,
+      "extracted_row_count": 143,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 18,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "appointment_id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "provider_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "consultation_type",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "room_name",
+          "dtype": "str"
+        },
+        {
+          "name": "room_url",
+          "dtype": "str"
+        },
+        {
+          "name": "scheduled_start",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "scheduled_end",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "started_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "ended_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "encounter_id",
+          "dtype": "object"
+        },
+        {
+          "name": "created_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "acbf15734cd8142051ca26ffafd08069",
+      "file_path": "data/raw/consultations/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 38426,
+      "sha256": "656ecae3e0067915330226cd2903b5efa00df4275db700abfd17c641aaf51653",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "diagnostic_order_items",
+      "extraction_timestamp": "2026-09-01T23:21:57.050600+00:00",
+      "source_row_count": 132,
+      "extracted_row_count": 132,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 7,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "diagnostic_order_id",
+          "dtype": "object"
+        },
+        {
+          "name": "diagnostic_test_id",
+          "dtype": "object"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "specimen_collected_at",
+          "dtype": "datetime64[s, UTC]"
+        },
+        {
+          "name": "performed_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        }
+      ],
+      "schema_hash": "dc7ae4a91e95e7a15b8ab715b58891df",
+      "file_path": "data/raw/diagnostic_order_items/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 13149,
+      "sha256": "f85517dbf06af1ef9c73082850ab3d4facdeb68210cd69411bdea23bb4a31ccc",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "diagnostic_orders",
+      "extraction_timestamp": "2026-09-01T23:21:57.471792+00:00",
+      "source_row_count": 132,
+      "extracted_row_count": 132,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 14,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "encounter_id",
+          "dtype": "object"
+        },
+        {
+          "name": "ordering_provider_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "priority",
+          "dtype": "str"
+        },
+        {
+          "name": "ordered_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "cancelled_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "cancelled_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "cancellation_reason",
+          "dtype": "str"
+        }
+      ],
+      "schema_hash": "ef7b49f1b4854e53a7d89df51dd7c8ee",
+      "file_path": "data/raw/diagnostic_orders/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 23022,
+      "sha256": "cb28c6f6ebcdb68f55c46888c7b3a9b2d4378f9319f1dce524e7d9b7407cb521",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "diagnostic_results",
+      "extraction_timestamp": "2026-09-01T23:21:58.043604+00:00",
+      "source_row_count": 94,
+      "extracted_row_count": 94,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 16,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "diagnostic_order_item_id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "result_value",
+          "dtype": "str"
+        },
+        {
+          "name": "unit",
+          "dtype": "str"
+        },
+        {
+          "name": "reference_range",
+          "dtype": "str"
+        },
+        {
+          "name": "abnormal_flag",
+          "dtype": "bool"
+        },
+        {
+          "name": "result_status",
+          "dtype": "str"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        },
+        {
+          "name": "performed_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "verified_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "verified_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "object"
+        }
+      ],
+      "schema_hash": "0a16a2c146eda7cadac51770b5603f76",
+      "file_path": "data/raw/diagnostic_results/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 19670,
+      "sha256": "46f2b11f8777b0a13452a4ad4be5b52ac074e7a3b05b7fe400c9e9f61e1d9fbf",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "diagnostic_tests",
+      "extraction_timestamp": "2026-09-01T23:21:58.176360+00:00",
+      "source_row_count": 142,
+      "extracted_row_count": 142,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 9,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "code",
+          "dtype": "str"
+        },
+        {
+          "name": "name",
+          "dtype": "str"
+        },
+        {
+          "name": "category",
+          "dtype": "str"
+        },
+        {
+          "name": "specimen_type",
+          "dtype": "str"
+        },
+        {
+          "name": "description",
+          "dtype": "str"
+        },
+        {
+          "name": "is_active",
+          "dtype": "bool"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "45f3b60125787b8f1a96d12b1e23aa1c",
+      "file_path": "data/raw/diagnostic_tests/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 12140,
+      "sha256": "f749d23d53ea65cce35c68d9de6f7c48fe9314a4bd2ef61bcc8e519ef7d41f98",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "encounters",
+      "extraction_timestamp": "2026-09-01T23:21:58.545046+00:00",
+      "source_row_count": 415,
+      "extracted_row_count": 415,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 15,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "appointment_id",
+          "dtype": "object"
+        },
+        {
+          "name": "provider_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "encounter_type",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "started_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "ended_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "chief_complaint",
+          "dtype": "str"
+        },
+        {
+          "name": "clinical_notes",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "int64"
+        }
+      ],
+      "schema_hash": "fc7214e3c604a7819b47f132395b08b6",
+      "file_path": "data/raw/encounters/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 55388,
+      "sha256": "b17498231e9639f181350d0c25bdbcc4ebc2975c9709ac7d4b3b49ebd9509875",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "facilities",
+      "extraction_timestamp": "2026-09-01T23:21:58.699055+00:00",
+      "source_row_count": 922,
+      "extracted_row_count": 922,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 9,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "name",
+          "dtype": "str"
+        },
+        {
+          "name": "facility_code",
+          "dtype": "str"
+        },
+        {
+          "name": "facility_type",
+          "dtype": "str"
+        },
+        {
+          "name": "address",
+          "dtype": "str"
+        },
+        {
+          "name": "phone",
+          "dtype": "str"
+        },
+        {
+          "name": "is_active",
+          "dtype": "bool"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "d89f706610a6fe24920d39972f4c0e97",
+      "file_path": "data/raw/facilities/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 53854,
+      "sha256": "11e40a70cc6d453b351293782af2530f0bfa8793a693bc9dfb445f56251c060c",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "interoperability_audits",
+      "extraction_timestamp": "2026-09-01T23:21:58.972814+00:00",
+      "source_row_count": 73,
+      "extracted_row_count": 73,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 10,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "user_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "action",
+          "dtype": "str"
+        },
+        {
+          "name": "resource_type",
+          "dtype": "str"
+        },
+        {
+          "name": "resource_id",
+          "dtype": "str"
+        },
+        {
+          "name": "purpose",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "details",
+          "dtype": "str"
+        },
+        {
+          "name": "timestamp",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "1de46bf7ee1ec3e7c7f3920f52874295",
+      "file_path": "data/raw/interoperability_audits/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 12440,
+      "sha256": "7a1e9041b3c55786b4b8352760f604ad92b4d30bec37c8b66fd721f3f18bf3c0",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "medications",
+      "extraction_timestamp": "2026-09-01T23:21:59.104076+00:00",
+      "source_row_count": 150,
+      "extracted_row_count": 150,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 10,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "name",
+          "dtype": "str"
+        },
+        {
+          "name": "generic_name",
+          "dtype": "str"
+        },
+        {
+          "name": "strength",
+          "dtype": "str"
+        },
+        {
+          "name": "dosage_form",
+          "dtype": "str"
+        },
+        {
+          "name": "route",
+          "dtype": "str"
+        },
+        {
+          "name": "unit",
+          "dtype": "str"
+        },
+        {
+          "name": "is_active",
+          "dtype": "bool"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "6d12973f93e0a78dc7bcc9eb49de7cfc",
+      "file_path": "data/raw/medications/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 12692,
+      "sha256": "1e9fa55c3a8adc925a0525684d988f8df0d46a0966a753bcadf4ecb4db99f532",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "notification_preferences",
+      "extraction_timestamp": "2026-09-01T23:21:59.341979+00:00",
+      "source_row_count": 109,
+      "extracted_row_count": 109,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 13,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "user_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "email_enabled",
+          "dtype": "bool"
+        },
+        {
+          "name": "sms_enabled",
+          "dtype": "bool"
+        },
+        {
+          "name": "in_app_enabled",
+          "dtype": "bool"
+        },
+        {
+          "name": "appointment_reminders",
+          "dtype": "bool"
+        },
+        {
+          "name": "referral_notifications",
+          "dtype": "bool"
+        },
+        {
+          "name": "diagnostic_notifications",
+          "dtype": "bool"
+        },
+        {
+          "name": "prescription_notifications",
+          "dtype": "bool"
+        },
+        {
+          "name": "preferred_email",
+          "dtype": "str"
+        },
+        {
+          "name": "preferred_phone",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "8ad6009f9a3a8b2b20b5bc986fadcce6",
+      "file_path": "data/raw/notification_preferences/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 12420,
+      "sha256": "f878cc15f00468642d7245d230783fa5bcff536cc9fb3be40dd51a972082c0a8",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "notifications",
+      "extraction_timestamp": "2026-09-01T23:21:59.714512+00:00",
+      "source_row_count": 142,
+      "extracted_row_count": 142,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 21,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "user_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "notification_type",
+          "dtype": "str"
+        },
+        {
+          "name": "channel",
+          "dtype": "str"
+        },
+        {
+          "name": "subject",
+          "dtype": "str"
+        },
+        {
+          "name": "message",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "is_read",
+          "dtype": "bool"
+        },
+        {
+          "name": "read_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "scheduled_at",
+          "dtype": "datetime64[s, UTC]"
+        },
+        {
+          "name": "sent_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "failed_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "retry_count",
+          "dtype": "int64"
+        },
+        {
+          "name": "error_message",
+          "dtype": "str"
+        },
+        {
+          "name": "provider_message_id",
+          "dtype": "str"
+        },
+        {
+          "name": "related_entity_type",
+          "dtype": "str"
+        },
+        {
+          "name": "related_entity_id",
+          "dtype": "object"
+        },
+        {
+          "name": "idempotency_key",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "39c20e9551096b5b98814151e0b35eda",
+      "file_path": "data/raw/notifications/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 28188,
+      "sha256": "901465c555c6ed62a11010276b80c9c9eee695eefcd9ef632187e6412aa44b8d",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "patient_identifiers",
+      "extraction_timestamp": "2026-09-01T23:21:59.981273+00:00",
+      "source_row_count": 18,
+      "extracted_row_count": 18,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 9,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "system",
+          "dtype": "str"
+        },
+        {
+          "name": "value",
+          "dtype": "str"
+        },
+        {
+          "name": "identifier_type",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "verified_at",
+          "dtype": "datetime64[s, UTC]"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "e21e189c313ffc213edf4c8dddf99b2d",
+      "file_path": "data/raw/patient_identifiers/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 7411,
+      "sha256": "6204814862d415cb3a3c3c25e2b70c99a6f522a76f448252ba5b1ffb7711d621",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "patients",
+      "extraction_timestamp": "2026-09-01T23:22:00.239952+00:00",
+      "source_row_count": 912,
+      "extracted_row_count": 912,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 18,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_number",
+          "dtype": "str"
+        },
+        {
+          "name": "first_name",
+          "dtype": "str"
+        },
+        {
+          "name": "middle_name",
+          "dtype": "str"
+        },
+        {
+          "name": "last_name",
+          "dtype": "str"
+        },
+        {
+          "name": "date_of_birth",
+          "dtype": "datetime64[s]"
+        },
+        {
+          "name": "gender",
+          "dtype": "str"
+        },
+        {
+          "name": "phone",
+          "dtype": "str"
+        },
+        {
+          "name": "email",
+          "dtype": "str"
+        },
+        {
+          "name": "address",
+          "dtype": "str"
+        },
+        {
+          "name": "emergency_contact_name",
+          "dtype": "str"
+        },
+        {
+          "name": "emergency_contact_phone",
+          "dtype": "str"
+        },
+        {
+          "name": "is_active",
+          "dtype": "bool"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "user_id",
+          "dtype": "float64"
+        }
+      ],
+      "schema_hash": "6105b64ed68efd9cad153d3bbf8e2ab3",
+      "file_path": "data/raw/patients/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 74762,
+      "sha256": "aa9998b26efeab043588918bc2b07fdb9349e4334c049405722ca682ec53ea83",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "prescription_items",
+      "extraction_timestamp": "2026-09-01T23:22:00.694581+00:00",
+      "source_row_count": 122,
+      "extracted_row_count": 122,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 11,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "prescription_id",
+          "dtype": "object"
+        },
+        {
+          "name": "medication_id",
+          "dtype": "object"
+        },
+        {
+          "name": "dosage",
+          "dtype": "str"
+        },
+        {
+          "name": "frequency",
+          "dtype": "str"
+        },
+        {
+          "name": "duration",
+          "dtype": "int64"
+        },
+        {
+          "name": "duration_unit",
+          "dtype": "str"
+        },
+        {
+          "name": "route",
+          "dtype": "str"
+        },
+        {
+          "name": "quantity",
+          "dtype": "int64"
+        },
+        {
+          "name": "instructions",
+          "dtype": "str"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        }
+      ],
+      "schema_hash": "3a933ea8905de2c8a6dba75f1b322f14",
+      "file_path": "data/raw/prescription_items/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 14114,
+      "sha256": "bc1267a59cd79dff95d52e9dcd65d40fe010a8afb377353cbdd220f25fc16183",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "prescriptions",
+      "extraction_timestamp": "2026-09-01T23:22:01.087688+00:00",
+      "source_row_count": 122,
+      "extracted_row_count": 122,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 17,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "encounter_id",
+          "dtype": "object"
+        },
+        {
+          "name": "prescriber_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "prescribed_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "issued_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "issued_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "cancelled_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "cancelled_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "cancellation_reason",
+          "dtype": "str"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "int64"
+        }
+      ],
+      "schema_hash": "c2d2dff6199ddb4a7a52afb573087735",
+      "file_path": "data/raw/prescriptions/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 26630,
+      "sha256": "84af4b47dad68ef99d550439e8fee6c0e01e7c1537cd40f2d700826749cfafdf",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "queue_entries",
+      "extraction_timestamp": "2026-09-01T23:22:01.472417+00:00",
+      "source_row_count": 83,
+      "extracted_row_count": 83,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 13,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "appointment_id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "queue_date",
+          "dtype": "datetime64[s]"
+        },
+        {
+          "name": "queue_number",
+          "dtype": "str"
+        },
+        {
+          "name": "priority",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "checked_in_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "called_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "consultation_started_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "completed_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "728668c210379673f8523b676288602b",
+      "file_path": "data/raw/queue_entries/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 16579,
+      "sha256": "4d3d0c367d5ed40cce97b8d2da863f873075d8cae96e46dff81bdbe764d5faca",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "referrals",
+      "extraction_timestamp": "2026-09-01T23:22:01.933314+00:00",
+      "source_row_count": 154,
+      "extracted_row_count": 154,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 36,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "encounter_id",
+          "dtype": "object"
+        },
+        {
+          "name": "referring_facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "referring_provider_id",
+          "dtype": "int64"
+        },
+        {
+          "name": "receiving_facility_id",
+          "dtype": "object"
+        },
+        {
+          "name": "receiving_provider_id",
+          "dtype": "object"
+        },
+        {
+          "name": "referral_type",
+          "dtype": "str"
+        },
+        {
+          "name": "priority",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "reason",
+          "dtype": "str"
+        },
+        {
+          "name": "clinical_summary",
+          "dtype": "str"
+        },
+        {
+          "name": "requested_specialty",
+          "dtype": "str"
+        },
+        {
+          "name": "requested_date",
+          "dtype": "datetime64[s]"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "created_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "accepted_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "accepted_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "rejected_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "rejected_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "rejection_reason",
+          "dtype": "str"
+        },
+        {
+          "name": "scheduled_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "scheduled_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "scheduled_date",
+          "dtype": "datetime64[s]"
+        },
+        {
+          "name": "scheduled_time",
+          "dtype": "object"
+        },
+        {
+          "name": "completed_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "completed_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "outcome_status",
+          "dtype": "str"
+        },
+        {
+          "name": "outcome_notes",
+          "dtype": "str"
+        },
+        {
+          "name": "follow_up_required",
+          "dtype": "bool"
+        },
+        {
+          "name": "follow_up_date",
+          "dtype": "datetime64[s]"
+        },
+        {
+          "name": "cancelled_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "cancelled_by",
+          "dtype": "float64"
+        },
+        {
+          "name": "cancellation_reason",
+          "dtype": "str"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_by",
+          "dtype": "int64"
+        }
+      ],
+      "schema_hash": "1f685cebc915d40a13fa6e45acaee5ef",
+      "file_path": "data/raw/referrals/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 44246,
+      "sha256": "d53bba4087047b62e741ad4c8884fb3562bc44cc2b2cb1ebdbbb8b26fa3ff349",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "system_checks",
+      "extraction_timestamp": "2026-09-01T23:22:02.048197+00:00",
+      "source_row_count": 23,
+      "extracted_row_count": 23,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "int64"
+        },
+        {
+          "name": "check_name",
+          "dtype": "str"
+        },
+        {
+          "name": "status",
+          "dtype": "str"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        }
+      ],
+      "schema_hash": "5a12d659533dac967e5e29b71bef6aa6",
+      "file_path": "data/raw/system_checks/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 3297,
+      "sha256": "b47261a59c96b3930d465d414021d80055509443d86c54789194651f765526f9",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "users",
+      "extraction_timestamp": "2026-09-01T23:22:02.272081+00:00",
+      "source_row_count": 2690,
+      "extracted_row_count": 2690,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 8,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "int64"
+        },
+        {
+          "name": "email",
+          "dtype": "str"
+        },
+        {
+          "name": "password_hash",
+          "dtype": "str"
+        },
+        {
+          "name": "role",
+          "dtype": "str"
+        },
+        {
+          "name": "is_active",
+          "dtype": "bool"
+        },
+        {
+          "name": "created_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "updated_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "facility_id",
+          "dtype": "object"
+        }
+      ],
+      "schema_hash": "20644728826c337c85b61f54291254d4",
+      "file_path": "data/raw/users/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 292524,
+      "sha256": "c567a752d717ce1cf63bcd5ef6dd76153f339b7add61ff11344a7222232e19af",
+      "status": "success"
+    },
+    {
+      "source_database": "healthcare_dev",
+      "source_table": "vitals",
+      "extraction_timestamp": "2026-09-01T23:22:02.654346+00:00",
+      "source_row_count": 124,
+      "extracted_row_count": 124,
+      "reconciliation_variance": 0,
+      "reconciliation_status": "RECONCILED",
+      "column_count": 14,
+      "columns": [
+        {
+          "name": "id",
+          "dtype": "object"
+        },
+        {
+          "name": "encounter_id",
+          "dtype": "object"
+        },
+        {
+          "name": "patient_id",
+          "dtype": "object"
+        },
+        {
+          "name": "recorded_by",
+          "dtype": "int64"
+        },
+        {
+          "name": "recorded_at",
+          "dtype": "datetime64[us, UTC]"
+        },
+        {
+          "name": "temperature",
+          "dtype": "float64"
+        },
+        {
+          "name": "heart_rate",
+          "dtype": "int64"
+        },
+        {
+          "name": "respiratory_rate",
+          "dtype": "float64"
+        },
+        {
+          "name": "systolic_bp",
+          "dtype": "int64"
+        },
+        {
+          "name": "diastolic_bp",
+          "dtype": "int64"
+        },
+        {
+          "name": "spo2",
+          "dtype": "float64"
+        },
+        {
+          "name": "weight",
+          "dtype": "float64"
+        },
+        {
+          "name": "height",
+          "dtype": "float64"
+        },
+        {
+          "name": "notes",
+          "dtype": "str"
+        }
+      ],
+      "schema_hash": "e4dced84cde8d87b1abdd3dba2cfd6c7",
+      "file_path": "data/raw/vitals/snapshot_2026-09-01.parquet",
+      "file_size_bytes": 17338,
+      "sha256": "9b6b6cf95e9fa80daed0204dca676075719774279b00b02f8cc476fbde586058",
+      "status": "success"
+    }
+  ]
+}

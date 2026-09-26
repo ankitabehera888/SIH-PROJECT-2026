@@ -1,0 +1,44 @@
+# Data Engineering Environment
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook Checkpoints & Cache
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Data Exports, Dumps & Parquet Files (Strict PII/PHI Protection)
+*.csv
+*.tsv
+*.xlsx
+*.parquet
+*.feather
+*.h5
+*.pickle
+*.pkl
+*.jsonl
+*.sql.gz
+infrastructure/postgres/backup/*.sql
+
+# Allow Profiling and Quality Reports
+!reports/*.csv
+
+# Data Directories
+data/raw/
+data/staging/
+data/processed/
+data/output/
+data/temp/
+
+# Logs
+*.log
+logs/
+
+# Pytest & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
